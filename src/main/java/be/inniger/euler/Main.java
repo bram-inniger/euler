@@ -29,6 +29,8 @@ import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 import com.google.common.reflect.ClassPath;
 
+import be.inniger.euler.util.StopWatch;
+
 /**
  * Main class of the project, invoke to solve a specific problem by problem nr.
  *
@@ -52,16 +54,18 @@ public class Main {
       String problemName = "Problem" + (problemNr < 10 ? "0" : "") + problemNr;
 
       if (!availableProblems.containsKey(problemName)) {
-        throw new IllegalArgumentException("Problem not found: " + problemName);
+        throw new IllegalArgumentException("Problem not found: . " + problemName);
       }
 
       Class<?> problemClass = Class.forName(availableProblems.get(problemName).getName());
       Problem problem = (Problem) problemClass.newInstance();
 
-      log.info("The solution is: \"{}\"", problem.solve());
+      StopWatch stopWatch = new StopWatch();
+      log.info("The solution is: \"{}\". ", problem.solve());
+      log.info("Calculating this solution took {} ms. ", stopWatch.getDeltaMillis());
     }
     catch (IllegalArgumentException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-      log.error("Caught \"{}\" with message \"{}\"", e.getClass(), e.getMessage());
+      log.error("Caught \"{}\" with message \"{}\". ", e.getClass(), e.getMessage());
       exitFail();
     }
   }
@@ -84,7 +88,7 @@ public class Main {
           }, Function.identity()));
     }
     catch (IOException e) {
-      log.error("Failed to retrieve the list of problems: \"{}\"", e.getMessage());
+      log.error("Failed to retrieve the list of problems: \"{}\". ", e.getMessage());
       exitFail();
     }
 
