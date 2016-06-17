@@ -15,7 +15,7 @@ Furthermore a nicely shaded JAR gets created on build, allowing to solve just a 
     $ git clone git@github.com:bram-inniger/euler.git Euler
     $ cd Euler
     $ mvn package -DskipTests # YOLO
-    $ java -jar target/euler.jar
+    $ java -jar target/euler.jar 1
 
 ## Known issues
 
