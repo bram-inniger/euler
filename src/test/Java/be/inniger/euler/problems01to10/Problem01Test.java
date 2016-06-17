@@ -31,7 +31,7 @@ public class Problem01Test {
 
   @Test
   public void testSolve() {
-    String expected = "42";
+    String expected = "233168";
     String actual = new Problem01().solve();
 
     assertEquals(expected, actual);
