@@ -19,29 +19,21 @@
 
 package be.inniger.euler.problems01to10;
 
-import java.util.stream.IntStream;
-import org.jetbrains.annotations.NotNull;
+import static org.junit.Assert.assertEquals;
 
-import be.inniger.euler.Problem;
+import org.junit.Test;
 
 /**
- * Problem from Project Euler:
- * <p>
- * If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
- * Find the sum of all the multiples of 3 or 5 below 1000.
- *
  * @author Bram Inniger
  * @version 1.0
  */
-public class Problem01 implements Problem {
+public class Problem02Test {
 
-  @NotNull
-  @Override
-  public String solve() {
-    return "" +    // Convert the int below to a String to return
-        IntStream
-            .range(0, 1000)
-            .filter(i -> i % 3 == 0 || i % 5 == 0)
-            .sum();
+  @Test
+  public void testSolve() {
+    String expected = "4613732";
+    String actual = new Problem02().solve();
+
+    assertEquals(expected, actual);
   }
 }
