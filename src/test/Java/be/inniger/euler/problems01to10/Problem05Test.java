@@ -17,30 +17,23 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
  */
 
-package be.inniger.euler.util;
+package be.inniger.euler.problems01to10;
+
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 
 /**
- * Simple StopWatch to measure execution time.
- *
  * @author Bram Inniger
  * @version 1.0
  */
-public class StopWatch {
-  private final long startedAt;
+public class Problem05Test {
 
-  /**
-   * Create and start the stopwatch.
-   */
-  public StopWatch() {
-    startedAt = System.currentTimeMillis();
-  }
+  @Test
+  public void testSolve() {
+    String expected = "232792560";
+    String actual = new Problem05().solve();
 
-  /**
-   * Get the current amount time since start, expressed in milliseconds.
-   *
-   * @return The delta of time passed
-   */
-  public long getDeltaMillis() {
-    return System.currentTimeMillis() - startedAt;
+    assertEquals(expected, actual);
   }
 }
