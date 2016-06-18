@@ -45,8 +45,8 @@ public class Prime {
   /**
    * Naive way of finding out if it is a prime, works fine for small numbers.
    *
-   * @param from Some small prime
-   * @return The next prime
+   * @param from Some small prime (non-inclusive)
+   * @return The next prime number after the from point
    */
   private static long getNextNaive(long from) {
     while (true) {
@@ -62,8 +62,8 @@ public class Prime {
    * Smarter way of getting the next prime, increments in batches of 6, just like the isPrime() method.
    * Only trick here is setting the from variable to the nearest value that can be incremented like this.
    *
-   * @param from
-   * @return
+   * @param from Starting point to look (non-inclusive)
+   * @return The next prime number after the from point
    */
   private static long getNextSmart(long from) {
     // First bring "from" to the nearest *higher* number in the "5 + 6x" and "7 + 6x" format
