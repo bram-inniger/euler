@@ -17,7 +17,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
  */
 
-package be.inniger.euler.util;
+package be.inniger.euler.problems11to20;
 
 import static org.junit.Assert.assertEquals;
 
@@ -27,21 +27,13 @@ import org.junit.Test;
  * @author Bram Inniger
  * @version 1.0
  */
-public class MathTest {
+public class Problem12Test {
 
   @Test
-  public void testPow() {
-    assertEquals(1, Maths.pow(1, 1));
-    assertEquals(1, Maths.pow(1, 2));
-    assertEquals(2, Maths.pow(2, 1));
-    assertEquals(1024, Maths.pow(2, 10));
-  }
+  public void testSolve() {
+    String expected = "76576500";
+    String actual = new Problem12().solve();
 
-  @Test
-  public void testGetFactors() {
-    assertEquals("{}", Maths.getFactors(1).toString());
-    assertEquals("{2=1}", Maths.getFactors(2).toString());
-    assertEquals("{2=2}", Maths.getFactors(4).toString());
-    assertEquals("{2=2, 3=1, 7=1}", Maths.getFactors(84).toString());
+    assertEquals(expected, actual);
   }
 }

@@ -19,8 +19,13 @@
 
 package be.inniger.euler.util;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -48,16 +53,22 @@ public class Maths {
     return result;
   }
 
+  /**
+   * Factorise a number.
+   *
+   * @param num Number to factorise
+   * @return The factors in a Map, the key being the factor, and the value how often it occurs
+   */
   @NotNull
-  public static Map<Long, Integer> getFactors(int num) {
+  public static Map<Long, Integer> getFactors(long num) {
     Map<Long, Integer> factors = new HashMap<>();
-    if (num <= 1) {
+    if (num <= 1L) {
       return factors;
     }
 
-    long prime = Prime.getNext(0);
-    while (num > 1) {
-      while (num % prime == 0) {
+    long prime = Prime.getNext(0L);
+    while (num > 1L) {
+      while (num % prime == 0L) {
         num /= prime;
 
         if (factors.containsKey(prime)) {
@@ -71,5 +82,38 @@ public class Maths {
       prime = Prime.getNext(prime);
     }
     return factors;
+  }
+
+  /**
+   * Get all of the divisors of a number.
+   *
+   * @param num The number to get the divisors of
+   * @return The divisors in the form of an ordered list
+   */
+  @NotNull
+  public static List<Long> getDivisorsOrdered(long num) {
+    Set<Long> divisorsSet = getDivisors(num);
+    List<Long> divisors = new ArrayList<>(divisorsSet);
+    divisors.sort(Comparator.naturalOrder());
+    return divisors;
+  }
+
+  /**
+   * Get all of the divisors of a number.
+   *
+   * @param num The number to get the divisors of
+   * @return The divisors in the form of an unordered set (no duplicates)
+   */
+  @NotNull
+  public static Set<Long> getDivisors(long num) {
+    Set<Long> divisors = new HashSet<>();
+    long upper = (long) Math.sqrt(num); // Largest divisor, apart from num itself, cannot be larger than sqrt(num)
+    for (long i = 1; i <= upper; i++) {
+      if (num%i == 0) {
+        divisors.add(i);
+        divisors.add(num/i);
+      }
+    }
+    return divisors;
   }
 }
