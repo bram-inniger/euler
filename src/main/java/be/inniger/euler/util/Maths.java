@@ -107,13 +107,15 @@ public class Maths {
   @NotNull
   public static Set<Long> getDivisors(long num) {
     Set<Long> divisors = new HashSet<>();
-    long upper = (long) Math.sqrt(num); // Largest divisor, apart from num itself, cannot be larger than sqrt(num)
-    for (long i = 1; i <= upper; i++) {
+    long upperBound = (long) Math.sqrt(num); // The largest divisor, apart from num itself, cannot be larger than sqrt(num)
+
+    for (long i = 1; i <= upperBound; i++) {
       if (num%i == 0) {
-        divisors.add(i);
-        divisors.add(num/i);
+        divisors.add(i); // Say num = 42 and i = 2 ==> 42 / 2 = 21, thus i is a divisor
+        divisors.add(num/i); // But this also means ==> 42 / 21 = 2, thus num/i is also a divisor
       }
     }
+    
     return divisors;
   }
 }
