@@ -19,33 +19,21 @@
 
 package be.inniger.euler.problems01to10;
 
-import org.jetbrains.annotations.NotNull;
+import static org.junit.Assert.assertEquals;
 
-import be.inniger.euler.Problem;
-import be.inniger.euler.util.Prime;
+import org.junit.Test;
 
 /**
- * Problem from Project Euler:
- * <p>
- * By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
- * What is the 10 001st prime number?
- *
  * @author Bram Inniger
  * @version 1.0
  */
-public class Problem07 implements Problem {
+public class Problem08Test {
 
-  private static final int PRIME_NR = 10001;
+  @Test
+  public void testSolve() {
+    String expected = "23514624000";
+    String actual = new Problem08().solve();
 
-  @NotNull
-  @Override
-  public String solve() {
-    long prime = -1L; // Not a prime, just the start value
-
-    for (int i = 0; i < PRIME_NR; i++) {
-      prime = Prime.getNext(prime);
-    }
-
-    return "" + prime;
+    assertEquals(expected, actual);
   }
 }
