@@ -17,23 +17,22 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
  */
 
-package be.inniger.euler.problems21to30;
+package be.inniger.euler.problems11to20;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-
 /**
  * @author Bram Inniger
  * @version 1.0
  */
-public class Problem21Test {
+public class Problem11Test {
 
   @Test
   public void testSolve() {
-    String expected = "31626";
-    String actual = new Problem21().solve();
+    String expected = "70600674";
+    String actual = new Problem11().solve();
 
     assertEquals(expected, actual);
   }
