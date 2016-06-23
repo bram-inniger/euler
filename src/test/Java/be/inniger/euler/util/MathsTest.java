@@ -20,6 +20,8 @@
 package be.inniger.euler.util;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -58,5 +60,14 @@ public class MathsTest {
     assertEquals("2", Maths.calculateFactorial(2).toString());
     assertEquals("6", Maths.calculateFactorial(3).toString());
     assertEquals("1405006117752879898543142606244511569936384000000000", Maths.calculateFactorial(42).toString());
+  }
+
+  @Test
+  public void testIsAmicable() {
+    assertFalse(Maths.isAmicable(1));
+    assertFalse(Maths.isAmicable(2));
+    assertFalse(Maths.isAmicable(42));
+    assertTrue(Maths.isAmicable(220));
+    assertTrue(Maths.isAmicable(284));
   }
 }

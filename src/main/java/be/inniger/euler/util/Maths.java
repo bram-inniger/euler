@@ -42,7 +42,7 @@ public class Maths {
    * Power calculation of a base to its exponent.
    *
    * @param base The base
-   * @param exp The exponent
+   * @param exp  The exponent
    * @return The power of the base to its exponent
    */
   public static long pow(long base, long exp) {
@@ -111,12 +111,12 @@ public class Maths {
     long upperBound = (long) Math.sqrt(num); // The largest divisor, apart from num itself, cannot be larger than sqrt(num)
 
     for (long i = 1; i <= upperBound; i++) {
-      if (num%i == 0) {
+      if (num % i == 0) {
         divisors.add(i); // Say num = 42 and i = 2 ==> 42 / 2 = 21, thus i is a divisor
-        divisors.add(num/i); // But this also means ==> 42 / 21 = 2, thus num/i is also a divisor
+        divisors.add(num / i); // But this also means ==> 42 / 21 = 2, thus num/i is also a divisor
       }
     }
-    
+
     return divisors;
   }
 
@@ -135,5 +135,30 @@ public class Maths {
     }
 
     return fact;
+  }
+
+  /**
+   * Find out whether a number is part of an amicable pair.
+   *
+   * @param num The number to be examined
+   * @return True if the number is part of an amicable pair
+   */
+  public static boolean isAmicable(int num) {
+    int sum = sumProperDivisors(num);
+    return sum != num && sumProperDivisors(sum) == num;
+  }
+
+  /**
+   * Get the sum of all the proper divisors.
+   * Simply summing all of the divisors, and subtracting the original number will provide this.
+   *
+   * @param num Number to get the sum of divisors of
+   * @return The sum of the proper divisors
+   */
+  private static int sumProperDivisors(int num) {
+    return getDivisors(num).stream()
+        .mapToInt(Long::intValue)
+        .sum()
+               - num;
   }
 }
