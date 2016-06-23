@@ -19,6 +19,7 @@
 
 package be.inniger.euler.util;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -117,5 +118,22 @@ public class Maths {
     }
     
     return divisors;
+  }
+
+  /**
+   * Calculate the factorial of a number.
+   *
+   * @param num Number to take the factorial of
+   * @return The factorial of a number
+   */
+  @NotNull
+  public static BigInteger calculateFactorial(int num) {
+    BigInteger fact = BigInteger.ONE;
+
+    for (int i = num; i > 0; i--) {
+      fact = fact.multiply(BigInteger.valueOf(i));
+    }
+
+    return fact;
   }
 }

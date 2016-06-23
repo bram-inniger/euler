@@ -51,4 +51,12 @@ public class MathsTest {
     assertEquals("[1, 2]", Maths.getDivisorsOrdered(2).toString());
     assertEquals("[1, 2, 3, 6, 7, 14, 21, 42]", Maths.getDivisorsOrdered(42).toString());
   }
+
+  @Test
+  public void testCalculateFactorial() {
+    assertEquals("1", Maths.calculateFactorial(1).toString());
+    assertEquals("2", Maths.calculateFactorial(2).toString());
+    assertEquals("6", Maths.calculateFactorial(3).toString());
+    assertEquals("1405006117752879898543142606244511569936384000000000", Maths.calculateFactorial(42).toString());
+  }
 }
