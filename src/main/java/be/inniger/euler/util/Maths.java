@@ -155,7 +155,7 @@ public class Maths {
    * @param num Number to get the sum of divisors of
    * @return The sum of the proper divisors
    */
-  private static int sumProperDivisors(int num) {
+  public static int sumProperDivisors(int num) {
     return getDivisors(num).stream()
         .mapToInt(Long::intValue)
         .sum()
