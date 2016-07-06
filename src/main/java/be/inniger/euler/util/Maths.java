@@ -138,6 +138,22 @@ public class Maths {
   }
 
   /**
+   * Calculate the factorial of a small number.
+   *
+   * @param num Number to take the factorial of
+   * @return The factorial of a number
+   */
+  public static int calculateSmallFactorial(int num) {
+    int fact = 1;
+
+    for (int i = num; i > 0; i--) {
+      fact *= i;
+    }
+
+    return fact;
+  }
+
+  /**
    * Find out whether a number is part of an amicable pair.
    *
    * @param num The number to be examined

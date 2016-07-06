@@ -63,6 +63,14 @@ public class MathsTest {
   }
 
   @Test
+  public void testCalculateSmallFactorial() {
+    assertEquals(1, Maths.calculateSmallFactorial(1));
+    assertEquals(2, Maths.calculateSmallFactorial(2));
+    assertEquals(6, Maths.calculateSmallFactorial(3));
+    assertEquals(479001600, Maths.calculateSmallFactorial(12));
+  }
+
+  @Test
   public void testIsAmicable() {
     assertFalse(Maths.isAmicable(1));
     assertFalse(Maths.isAmicable(2));
