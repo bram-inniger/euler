@@ -177,4 +177,23 @@ public class Maths {
         .sum()
                - num;
   }
+
+  /**
+   * Simple multiplication based way of determining the number of digits a number has (in base 10).
+   *
+   * @param num Number to calculate the number of digits of
+   * @return The number of digits in the base 10 representation of the number
+   */
+  public static int getNrDigits(long num) {
+    num = Math.abs(num);
+    long prod = 10;
+    int nrDigits = 1;
+
+    while (prod <= num) {
+      prod *= 10;
+      nrDigits++;
+    }
+
+    return nrDigits;
+  }
 }

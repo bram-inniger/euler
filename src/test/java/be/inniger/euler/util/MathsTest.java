@@ -78,4 +78,18 @@ public class MathsTest {
     assertTrue(Maths.isAmicable(220));
     assertTrue(Maths.isAmicable(284));
   }
+
+  @Test
+  public void testGetNrDigits() {
+    assertEquals(1, Maths.getNrDigits(0L));
+    assertEquals(1, Maths.getNrDigits(1L));
+    assertEquals(1, Maths.getNrDigits(-1L));
+    assertEquals(1, Maths.getNrDigits(-9L));
+    assertEquals(1, Maths.getNrDigits(-9L));
+    assertEquals(2, Maths.getNrDigits(10L));
+    assertEquals(2, Maths.getNrDigits(-10L));
+    assertEquals(2, Maths.getNrDigits(99L));
+    assertEquals(2, Maths.getNrDigits(-99L));
+    assertEquals(10, Maths.getNrDigits(1234567890));
+  }
 }
