@@ -34,17 +34,6 @@ import java.util.Iterator;
  */
 public class TriangleGenerator implements Iterable<Long> {
 
-  private long index;
-  private long sum;
-
-  /**
-   * Simple constructor supplying the starting values.
-   */
-  public TriangleGenerator() {
-    index = 1L;
-    sum = 1L;
-  }
-
   /**
    * Receive all of the generated triangle numbers in a clean way: through an iterator.
    *
@@ -53,6 +42,8 @@ public class TriangleGenerator implements Iterable<Long> {
   @Override
   public Iterator<Long> iterator() {
     return new Iterator<Long>() {
+      private long index = 1L;
+      private long sum = 1L;
 
       @Override
       public boolean hasNext() {
