@@ -119,5 +119,7 @@ public class MathsTest {
     assertTrue(Maths.isPandigital(21, 2));
     assertFalse(Maths.isPandigital(13, 2));
     assertFalse(Maths.isPandigital(10, 2));
+    assertFalse(Maths.isPandigital(11, 1));
+    assertFalse(Maths.isPandigital(11, 2));
   }
 }
