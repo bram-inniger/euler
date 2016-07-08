@@ -106,4 +106,18 @@ public class MathsTest {
     assertEquals(2, Maths.getNrDigits(-99L));
     assertEquals(10, Maths.getNrDigits(1234567890));
   }
+
+  @Test
+  public void testIsPandigital() {
+    assertTrue(Maths.isPandigital(1, 1));
+    assertFalse(Maths.isPandigital(0, 1));
+    assertFalse(Maths.isPandigital(1, 2));
+    assertFalse(Maths.isPandigital(2, 1));
+    assertFalse(Maths.isPandigital(2, 2));
+    assertFalse(Maths.isPandigital(12, 1));
+    assertTrue(Maths.isPandigital(12, 2));
+    assertTrue(Maths.isPandigital(21, 2));
+    assertFalse(Maths.isPandigital(13, 2));
+    assertFalse(Maths.isPandigital(10, 2));
+  }
 }

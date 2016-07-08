@@ -29,6 +29,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.IntStream;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -210,5 +211,22 @@ public class Maths {
    */
   public static int getNrDigits(long num) {
     return getDigits(num).size();
+  }
+
+  /**
+   * Check whether a number is pandigital (i.e. it contains all the digits exactly once from 1 to n).
+   *
+   * @param num The number to check
+   * @param n The nr of digits to check against
+   * @return True if this is indeed a pandigital number
+   */
+  public static boolean isPandigital(long num, int n) {
+    Set<Integer> digits = new HashSet<>(getDigits(num)); // Get all of the digits of num, and deduplicate them by inserting them into a Set
+    return digits.size() == n &&  // If there are more different digits present than n (e.g. n=2 and num=123) then it cannot be pandigital
+        IntStream
+            .rangeClosed(1, n)
+            .filter(digits::contains)
+            .count()
+                         == n;    // Check if all numbers from 1 to n are present in the digits-list
   }
 }
