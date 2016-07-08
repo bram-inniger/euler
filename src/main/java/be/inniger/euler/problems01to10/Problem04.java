@@ -24,6 +24,7 @@ import java.util.List;
 import org.jetbrains.annotations.NotNull;
 
 import be.inniger.euler.Problem;
+import be.inniger.euler.util.Maths;
 
 /**
  * Problem from Project Euler:
@@ -60,7 +61,7 @@ public class Problem04 implements Problem {
    * @return True if the number is a palindrome
    */
   private boolean isPalindrome(int num) {
-    List<Integer> digits = getDigits(num);
+    List<Integer> digits = Maths.getDigits(num);
     int size = digits.size();
 
     for (int i = 0; i < size / 2; i++) {
@@ -72,20 +73,4 @@ public class Problem04 implements Problem {
     return true;
   }
 
-  /**
-   * Decompose a number into a list of its digits (in the logical order).
-   *
-   * @param num The number to get the digits of
-   * @return A list of the number's digits
-   */
-  private List<Integer> getDigits(int num) {
-    List<Integer> digits = new LinkedList<>();
-
-    while (num != 0) {
-      digits.add(0, num%10);
-      num /= 10;
-    }
-
-    return digits;
-  }
 }

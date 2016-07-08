@@ -21,9 +21,11 @@ package be.inniger.euler.util;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -179,21 +181,34 @@ public class Maths {
   }
 
   /**
-   * Simple multiplication based way of determining the number of digits a number has (in base 10).
+   * Decompose a number into a list of its digits (in the logical order).
+   *
+   * @param num The number to get the digits of
+   * @return A list of the number's digits
+   */
+  public static List<Integer> getDigits(long num) {
+    if (num == 0) {
+      return Collections.singletonList(0);
+    }
+
+    num = Math.abs(num);
+    List<Integer> digits = new LinkedList<>();
+
+    while (num != 0) {
+      digits.add(0, (int) (num%10));
+      num /= 10;
+    }
+
+    return digits;
+  }
+
+  /**
+   * Get the number of digits in base 10 of an integer number
    *
    * @param num Number to calculate the number of digits of
    * @return The number of digits in the base 10 representation of the number
    */
   public static int getNrDigits(long num) {
-    num = Math.abs(num);
-    long prod = 10;
-    int nrDigits = 1;
-
-    while (prod <= num) {
-      prod *= 10;
-      nrDigits++;
-    }
-
-    return nrDigits;
+    return getDigits(num).size();
   }
 }

@@ -80,11 +80,25 @@ public class MathsTest {
   }
 
   @Test
+  public void testGetDigits() {
+    assertEquals("[0]", Maths.getDigits(0L).toString());
+    assertEquals("[1]", Maths.getDigits(1L).toString());
+    assertEquals("[1]", Maths.getDigits(-1L).toString());
+    assertEquals("[9]", Maths.getDigits(9L).toString());
+    assertEquals("[9]", Maths.getDigits(-9L).toString());
+    assertEquals("[1, 0]", Maths.getDigits(10L).toString());
+    assertEquals("[1, 0]", Maths.getDigits(-10L).toString());
+    assertEquals("[9, 9]", Maths.getDigits(99L).toString());
+    assertEquals("[9, 9]", Maths.getDigits(-99L).toString());
+    assertEquals("[1, 2, 3, 4, 5, 6, 7, 8, 9, 0]", Maths.getDigits(1234567890L).toString());
+  }
+
+  @Test
   public void testGetNrDigits() {
     assertEquals(1, Maths.getNrDigits(0L));
     assertEquals(1, Maths.getNrDigits(1L));
     assertEquals(1, Maths.getNrDigits(-1L));
-    assertEquals(1, Maths.getNrDigits(-9L));
+    assertEquals(1, Maths.getNrDigits(9L));
     assertEquals(1, Maths.getNrDigits(-9L));
     assertEquals(2, Maths.getNrDigits(10L));
     assertEquals(2, Maths.getNrDigits(-10L));
