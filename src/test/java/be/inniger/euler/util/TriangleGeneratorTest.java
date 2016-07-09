@@ -29,7 +29,7 @@ import org.junit.Test;
  * @author Bram Inniger
  * @version 1.0
  */
-public class TrialGeneratorTest {
+public class TriangleGeneratorTest {
 
   /**
    * Test the Iterator functionality by iteratively asking the first 10 triangle numbers.
