@@ -29,20 +29,18 @@ import org.junit.Test;
  * @author Bram Inniger
  * @version 1.0
  */
-public class PermutationGeneratorTest {
+public class DigitPermutationGeneratorTest {
 
   /**
    * Straightforward test: generate all the iterations of the number 1, 2 and 3, then verify all of them passed by.
-   * This checks both the Iterator#next() and Iterator#hasNext() methods.
+   * This checks both the Iterator#next() and Iterator#hasNext() methods, via the default Iterator#forEachRemaining.
    */
   @Test
   public void testGenerator() {
-    PermutationGenerator gen = new PermutationGenerator(3);
-    List<Long> permutations = new ArrayList<>();
+    DigitPermutationGenerator gen = new DigitPermutationGenerator(3);
 
-    for (long perm : gen) {
-      permutations.add(perm);
-    }
+    List<Long> permutations = new ArrayList<>();
+    gen.forEachRemaining(permutations::add);
 
     String expected = "[123, 132, 213, 231, 312, 321]";
     String actual = permutations.toString();
