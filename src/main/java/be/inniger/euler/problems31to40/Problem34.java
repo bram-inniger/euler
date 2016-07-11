@@ -49,7 +49,7 @@ public class Problem34 implements Problem {
   public String solve() {
     List<Integer> facts = IntStream              // Build a cache of the factorials of the digits 0 up to 9 included, as these will be used a lot
         .rangeClosed(0, 9)
-        .map(Maths::calculateSmallFactorial)
+        .map(Maths::smallFac)
         .boxed()
         .collect(Collectors.toList());
 
@@ -87,7 +87,7 @@ public class Problem34 implements Problem {
    */
   private int determineUpperBound() {
     int n = 0;
-    int fact9 = Maths.calculateSmallFactorial(9);
+    int fact9 = Maths.smallFac(9);
 
     while (Maths.pow(10, n) < (n+1)*fact9) {
       n++;

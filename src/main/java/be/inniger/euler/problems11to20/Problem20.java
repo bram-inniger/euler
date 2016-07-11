@@ -19,7 +19,6 @@
 
 package be.inniger.euler.problems11to20;
 
-import java.math.BigInteger;
 import org.jetbrains.annotations.NotNull;
 
 import be.inniger.euler.Problem;
@@ -44,7 +43,7 @@ public class Problem20 implements Problem {
   @Override
   public String solve() {
     return "" +
-        Maths.calculateFactorial(NUM)
+        Maths.fac(NUM)
             .toString()
             .chars()
             .map(Character::getNumericValue)

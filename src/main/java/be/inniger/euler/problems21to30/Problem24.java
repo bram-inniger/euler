@@ -82,7 +82,7 @@ public class Problem24 implements Problem {
     int nthPermutation = NTH_PERMUTATION;
 
     for (int i = NR_DIGITS-1; i >= 0; i--) { // -1, as for 10 numbers, we group them in series of 9! = (10-1)!
-      int factorial = Maths.calculateSmallFactorial(i);
+      int factorial = Maths.smallFac(i);
       int index = (nthPermutation-1) / factorial; // -1, as we start counting from 0, not from 1
 
       indices.add(index);

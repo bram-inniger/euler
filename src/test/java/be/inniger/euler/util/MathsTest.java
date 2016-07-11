@@ -56,21 +56,21 @@ public class MathsTest {
   }
 
   @Test
-  public void testCalculateFactorial() {
-    assertEquals("1", calculateFactorial(0).toString());
-    assertEquals("1", calculateFactorial(1).toString());
-    assertEquals("2", calculateFactorial(2).toString());
-    assertEquals("6", calculateFactorial(3).toString());
-    assertEquals("1405006117752879898543142606244511569936384000000000", calculateFactorial(42).toString());
+  public void testFac() {
+    assertEquals("1", fac(0).toString());
+    assertEquals("1", fac(1).toString());
+    assertEquals("2", fac(2).toString());
+    assertEquals("6", fac(3).toString());
+    assertEquals("1405006117752879898543142606244511569936384000000000", fac(42).toString());
   }
 
   @Test
-  public void testCalculateSmallFactorial() {
-    assertEquals(1, calculateSmallFactorial(0));
-    assertEquals(1, calculateSmallFactorial(1));
-    assertEquals(2, calculateSmallFactorial(2));
-    assertEquals(6, calculateSmallFactorial(3));
-    assertEquals(479001600, calculateSmallFactorial(12));
+  public void testSmallFac() {
+    assertEquals(1, smallFac(0));
+    assertEquals(1, smallFac(1));
+    assertEquals(2, smallFac(2));
+    assertEquals(6, smallFac(3));
+    assertEquals(479001600, smallFac(12));
   }
 
   @Test

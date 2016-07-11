@@ -130,7 +130,7 @@ public class Maths {
    * @return The factorial of a number
    */
   @NotNull
-  public static BigInteger calculateFactorial(int num) {
+  public static BigInteger fac(int num) {
     BigInteger fact = BigInteger.ONE;
 
     for (int i = num; i > 0; i--) {
@@ -146,7 +146,7 @@ public class Maths {
    * @param num Number to take the factorial of
    * @return The factorial of a number
    */
-  public static int calculateSmallFactorial(int num) {
+  public static int smallFac(int num) {
     int fact = 1;
 
     for (int i = num; i > 0; i--) {
