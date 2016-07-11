@@ -57,6 +57,7 @@ public class MathsTest {
 
   @Test
   public void testCalculateFactorial() {
+    assertEquals("1", calculateFactorial(0).toString());
     assertEquals("1", calculateFactorial(1).toString());
     assertEquals("2", calculateFactorial(2).toString());
     assertEquals("6", calculateFactorial(3).toString());
@@ -65,6 +66,7 @@ public class MathsTest {
 
   @Test
   public void testCalculateSmallFactorial() {
+    assertEquals(1, calculateSmallFactorial(0));
     assertEquals(1, calculateSmallFactorial(1));
     assertEquals(2, calculateSmallFactorial(2));
     assertEquals(6, calculateSmallFactorial(3));
