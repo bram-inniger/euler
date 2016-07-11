@@ -21,7 +21,6 @@ package be.inniger.euler.problems31to40;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -31,7 +30,6 @@ import org.junit.Test;
 public class Problem32Test {
 
   @Test
-  @Ignore // TODO write a better optimised version that takes less than 3s to solve, until then ignore this test
   public void testSolve() {
     String expected = "45228";
     String actual = new Problem32().solve();

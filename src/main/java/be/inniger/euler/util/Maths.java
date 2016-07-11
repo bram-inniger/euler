@@ -229,4 +229,34 @@ public class Maths {
             .count()
                          == n;    // Check if all numbers from 1 to n are present in the digits-list
   }
+
+  /**
+   * Get a part out of a number (similar to String#substring(int, int)).
+   * This operation assumes correct indexes, otherwise it will produce unexpected results.
+   *
+   * @param num The number a part will be taken from
+   * @param from The starting index, inclusive, starting from 0
+   * @param to The end index, exclusive, starting from 0
+   * @return The sub-part of the number
+   */
+  public static long getPart(long num, int from, int to) {
+    int size = (int) Math.log10(num) + 1; // Calculate the size of the number
+    return getPart(num, from, to, size);
+  }
+
+  /**
+   * Get a part out of a number (similar to String#substring(int, int)).
+   * This operation assumes correct indexes and sizes, otherwise it will produce unexpected results.
+   *
+   * @param num The number a part will be taken from
+   * @param from The starting index, inclusive, starting from 0
+   * @param to The end index, exclusive, starting from 0
+   * @param size The size of the number (amount of digits in base 10)
+   * @return The sub-part of the number
+   */
+  public static long getPart(long num, int from, int to, int size) {
+    return (num                   // Start with num
+        % pow(10, size - from))   // Remove the unneeded leading digits
+        / pow(10, size - to);     // Remove the unneeded trailing digits
+  }
 }

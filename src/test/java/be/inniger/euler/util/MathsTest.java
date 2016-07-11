@@ -122,4 +122,20 @@ public class MathsTest {
     assertFalse(Maths.isPandigital(11, 1));
     assertFalse(Maths.isPandigital(11, 2));
   }
+
+  @Test
+  public void testGetPart() {
+    assertEquals(123456789, Maths.getPart(123456789, 0, 9));
+    assertEquals(23456789, Maths.getPart(123456789, 1, 9));
+    assertEquals(12345678, Maths.getPart(123456789, 0, 8));
+    assertEquals(345, Maths.getPart(123456789, 2, 5));
+  }
+
+  @Test
+  public void testGetPartWithSize() {
+    assertEquals(123456789, Maths.getPart(123456789, 0, 9, 9));
+    assertEquals(23456789, Maths.getPart(123456789, 1, 9, 9));
+    assertEquals(12345678, Maths.getPart(123456789, 0, 8, 9));
+    assertEquals(345, Maths.getPart(123456789, 2, 5, 9));
+  }
 }

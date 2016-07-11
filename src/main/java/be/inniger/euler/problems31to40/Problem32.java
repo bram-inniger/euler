@@ -22,11 +22,10 @@ package be.inniger.euler.problems31to40;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.LongStream;
 import org.jetbrains.annotations.NotNull;
 
 import be.inniger.euler.Problem;
+import be.inniger.euler.util.DigitPermutationGenerator;
 import be.inniger.euler.util.Maths;
 
 /**
@@ -45,14 +44,9 @@ public class Problem32 implements Problem {
   private static final int N = 9;
 
   /**
-   * Implemented a rather un-elegant method:
-   * Just try all multiplicand / multiplies combinations, then verify if the concatenated identity is pandigital or not.
-   * Once again we will store the results in a HashSet to get "free" de-duplication.
-   *
-   * A neater solution could be:
-   * 1. create a collection holding all digits from 1 to 9.
-   * 2. try all permutations of this connection over both multiplicand and multiplier
-   * 3. simply check if the product contains the digits not yet permuted over, if they match then the number is by definition pandigital
+   * The idea is simple: generate all possible 9 digit permutations and check if the permutation can be formed in a way to create a valid product.
+   * As we start by using only the permutations, and nothing else, we know a priori that whatever our findings, it will be a pandigital set of multiplicand, multiplier and product.
+   * Now simply add up all the (unique) products so far and we have our answer.
    */
   @NotNull
   @Override
@@ -66,65 +60,56 @@ public class Problem32 implements Problem {
   }
 
   /**
-   * There are three optimisations to use:
-   * 1. Say "a * b = c", and all the digits from 1 to 9 are in play once and once only.
-   *    Then if a contains 5 digits, b still has to contain at least 1, leaving 3 digits for the product.
-   *    A product of a 5 digit number and a 1 digit number cannot have less than 5 digits itself.
-   *    So it is easy to see that both a and b have to be between 1 and 4 digits long.
-   * 2. Following the above a and b have to be between 1 (the lowest possible value) and 9876 (the highest possible value without repeating digits, that is 4 digits long)
-   * 3. Combining the above 2 it pays up to pre-compute all the integers between 1 and 9876 that do not contain any repeating digits, this allows to not even perform the relatively expensive "isPandigital" check in many cases
+   * The actual solving implementation.
    *
-   * @return A Collection containing all of the products found
+   * A first essential observation to take into account:
+   * if we have 9 digits to divide over "a * b = c", then the #c (nr. of digits of "c") has to be equal to or larger than #a.
+   * Thus "a" cannot have more than 4 digits in any case.
+   * This information is captured in the variable "longestL", and used in the outer-most for-loop.
+   * ==> #a <= 4
+   *
+   * Secondly, say both a and b have 2 digits, how many digits does c then have?
+   * Best case a=10 and b=10, meaning c=100 -> 3 digits
+   * Worst case a=99 and b=99, thus c=9801 -> 4 digits
+   *
+   * This means that #c = #a + #b (worst case) OR #a + #b - 1 (best case).
+   * Combined with the fact above that #c >= #a, we can say that
+   *      #c >= #a + #b -1     AND    #c <= #a + #b
+   *      #a + #b + #c = 9
+   *      #c >= #a
+   *
+   * Solving for #b this gives us: (this is expressed in the inner for-loop)
+   * ==> #b <= 9/2 - #a + 1
+   *
+   *
+   * Simply take every permutation, and split it up over every possible combination of "a" and "b", checking if what is left of the digits equals "a * b".
+   * The actual checking of all combinations of "a" and "b" follows the constraints defined above.
+   *
+   * @return A Collection containing all unique 9 digits pandigital products.
    */
   @NotNull
   private Collection<Long> determineProducts() {
-    Set<Long> products = new HashSet<>();
-    Collection<Long> candidates = getPandigitalCandidates();
+    int longestL = N / 2;
+    Set<Long> products = new HashSet<>();                     // Cheap trick to get free de-duplication (we want to count every product only once)
+    DigitPermutationGenerator gen = new DigitPermutationGenerator(N);
 
-    for (long multiplicand : candidates) {
-      for (long multiplier :candidates) {
-        long product = multiplicand * multiplier;
-        long total = Long.valueOf("" + multiplicand + multiplier + product);
-        if (candidates.contains(product) && Maths.isPandigital(total, N)) {
-          products.add(product);
-          Maths.isPandigital(total, N);
+    while (gen.hasNext()) {                                   // Loop over every single permutation
+      long perm = gen.next();
+
+      for (int i = 1; i <= longestL; i++) {
+        long multiplicand = Maths.getPart(perm, 0, i, N);     // Check if the first digit, the first 2, the first 3 or the first 4 digits generate a valid identity
+
+        for (int j = 1; j <= longestL-i+1; j++) {
+          long multiplier = Maths.getPart(perm, i, i+j, N);   // Do a similar check for all multipliers of different possible lengths
+          long prod = multiplicand * multiplier;
+
+          if (prod == Maths.getPart(perm, i+j, N, N)) {       // If the leftover digits form the product of the previous 2 we know we found a pandigital product
+            products.add(prod);
+          }
         }
       }
     }
 
     return products;
-  }
-
-  /**
-   * Cache all of the potential values to check.
-   * These all share the same property: they have no repeating digits.
-   *
-   * @return A collection of potential candidates
-   */
-  private Collection<Long> getPandigitalCandidates() {
-    return LongStream
-        .rangeClosed(1, 9876)
-        .parallel()
-        .filter(this::isCandidate)
-        .boxed()
-        .collect(Collectors.toSet());
-  }
-
-  /**
-   * Check if a number has repeating digits or not (a.k.a. is a candidate or not).
-   *
-   * @param num The number to check
-   * @return True if the number is a potential candidate
-   */
-  private boolean isCandidate(long num) {
-    Set<Long> digits = new HashSet<>();
-    int count = 0;
-    while (num > 0) {
-      digits.add(num % 10);
-      num /= 10;
-      count++;
-    }
-
-    return count == digits.size();
   }
 }
