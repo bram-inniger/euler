@@ -259,4 +259,23 @@ public class Maths {
         % pow(10, size - from))   // Remove the unneeded leading digits
         / pow(10, size - to);     // Remove the unneeded trailing digits
   }
+
+  /**
+   * Calculate the Greatest Common Divisor (GCD) between 2 numbers.
+   * This method uses Euclid's Algorithm:
+   *    gcd(a, 0) = a
+   *    gcd(a, b) = gcd(b, a%b)
+   * Assume a and b are positive.
+   *
+   * @param a The first number to compute the GCD from
+   * @param b The second number to compute the GCD from
+   * @return The GCD between a and b
+   */
+  public static long gcd(long a, long b) {
+    if (b == 0) { // Termination check
+      return a;
+    }
+
+    return gcd(b, a%b);
+  }
 }
