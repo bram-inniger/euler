@@ -210,7 +210,22 @@ public class Maths {
    * @return The number of digits in the base 10 representation of the number
    */
   public static int getNrDigits(long num) {
-    return getDigits(num).size();
+    if (num == 0) {
+      return 1;
+    }
+
+    return (int) (Math.floor(Math.log10(Math.abs(num)))) + 1;
+  }
+
+  /**
+   * Check whether a number is pandigital from 1 to 9 inclusive.
+   *
+   * @param num The number to check
+   * @return True if this is indeed a pandigital number
+   */
+  public static boolean isPandigital(long num) {
+    final int nrDigits = 9;  // No magic numbers
+    return isPandigital(num, nrDigits);
   }
 
   /**
@@ -240,8 +255,7 @@ public class Maths {
    * @return The sub-part of the number
    */
   public static long getPart(long num, int from, int to) {
-    int size = (int) Math.log10(num) + 1; // Calculate the size of the number
-    return getPart(num, from, to, size);
+    return getPart(num, from, to, getNrDigits(num));
   }
 
   /**
@@ -277,5 +291,17 @@ public class Maths {
     }
 
     return gcd(b, a%b);
+  }
+
+  /**
+   * Concatenate the digits of 2 numbers.
+   * E.g. "concatenate(1234, 5678)" -> 12345678
+   *
+   * @param a The leading part of the concatenated number
+   * @param b The trailing part of the concatenated number
+   * @return The full concatenated number
+   */
+  public static long concatenate(long a, long b) {
+    return a * pow(10, getNrDigits(b)) + b;
   }
 }

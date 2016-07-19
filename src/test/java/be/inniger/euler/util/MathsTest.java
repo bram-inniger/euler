@@ -124,6 +124,10 @@ public class MathsTest {
     assertFalse(isPandigital(10, 2));
     assertFalse(isPandigital(11, 1));
     assertFalse(isPandigital(11, 2));
+
+    assertTrue(isPandigital(123456789));
+    assertFalse(isPandigital(123456780));
+    assertFalse(isPandigital(123456799));
   }
 
   @Test
@@ -152,5 +156,14 @@ public class MathsTest {
     assertEquals(2, gcd(2, 4));
     assertEquals(2, gcd(2, 2));
     assertEquals(49, gcd(49, 98)); // From Problem33
+  }
+
+  @Test
+  public void testConcatenate() {
+    assertEquals(1, concatenate(0L, 1L));
+    assertEquals(10, concatenate(1L, 0L));
+    assertEquals(1234, concatenate(1L, 234L));
+    assertEquals(1234, concatenate(12L, 34L));
+    assertEquals(1234, concatenate(123L, 4L));
   }
 }
