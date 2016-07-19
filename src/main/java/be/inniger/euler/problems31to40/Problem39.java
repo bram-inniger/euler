@@ -50,23 +50,24 @@ public class Problem39 implements Problem {
    *
    * For a:
    * If   "a +  b + c = p"                  (rule 1)
-   * and  "a <= b < c"                      (rule 3)
+   * and  "a <= b < c    "                  (rule 3)
    * then "a +  a + a < p" OR "a < p / 3"
    *
    * Combined with rule 0 we can say that a is bounded from 1 up to p/3 (exclusive)
    *
    *
    * For b:
-   * If   "a + b + c = p"         (rule 1)
-   * then "b + c < p"
-   * We already know that "b < c" (rule 3)
-   * Thus "b + b < p" OR "b < p / 2"
+   * If                   "a + b + c = p"         (rule 1)
+   * then                 "    b + c < p"
+   * We already know that "    b < c    " (rule 3)
+   * Thus                 "    b + b < p" OR "b < p / 2"
    *
    * Combined with rule 3 again, we can say that b is bounded from a up p/2 (exclusive)
    *
    *
    * All that remains is try all of the combinations of a and b, for all possible p values.
    * Now verify that "a*a + b*b = c*c" (and "c > b") -> solution found.
+   * Note that, as "p/3" and "p/2" can produce non integer numbers, we still need to bound a and b up to the rounded down values inclusive. 
    */
   @NotNull
   @Override
@@ -78,10 +79,10 @@ public class Problem39 implements Problem {
       int nrSolutions = 0;
       int boundA = p / 3;
 
-      for (int a = 1; a < boundA; a++) {
+      for (int a = 1; a <= boundA; a++) {
         int boundB = p / 2;
 
-        for (int b = a; b < boundB; b++) {
+        for (int b = a; b <= boundB; b++) {
           int c = p - a - b;
 
           if ((c > b) && (a*a + b*b == c*c)) {
