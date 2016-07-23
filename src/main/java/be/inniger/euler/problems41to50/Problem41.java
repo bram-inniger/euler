@@ -22,6 +22,9 @@ package be.inniger.euler.problems41to50;
 import org.jetbrains.annotations.NotNull;
 
 import be.inniger.euler.Problem;
+import be.inniger.euler.util.DigitPermutationGenerator;
+import be.inniger.euler.util.Maths;
+import be.inniger.euler.util.Prime;
 
 /**
  * Problem from Project Euler:
@@ -34,9 +37,32 @@ import be.inniger.euler.Problem;
  */
 public class Problem41 implements Problem {
 
+  /**
+   * Simple (but probably not most efficient) solution:
+   * Generate all permutations of numbers 1 to n and test them for primeness.
+   * Start with n = 9, and see if a solution is present, if so there is no need to check n = 8, as all numbers will be smaller anyway.
+   * Keep searching the maximum prime for an ever decreasing "n" until the solution is discovered.
+   */
   @NotNull
   @Override
   public String solve() {
-    return "";
+    int nrDigits = 9;
+    long largestPrime = -1;
+
+    for (int i = nrDigits; i > 0; i--) {
+      DigitPermutationGenerator gen = new DigitPermutationGenerator(i);
+      while (gen.hasNext()) {
+        long prime = gen.next();
+        if (Prime.isPrime(prime) && prime > largestPrime) {
+          largestPrime = prime;
+        }
+      }
+
+      if (largestPrime > 0L) { // A solution is found!
+        return "" + largestPrime;
+      }
+    }
+
+    throw new RuntimeException("Cataclysmic event occurred, should not reach this... ");
   }
 }

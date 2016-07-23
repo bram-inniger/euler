@@ -21,6 +21,7 @@ package be.inniger.euler.problems41to50;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -29,7 +30,7 @@ import org.junit.Test;
  */
 public class Problem42Test {
 
-  @Test
+  @Test @Ignore
   public void testSolve() {
     String expected = "162";
     String actual = new Problem42().solve();
