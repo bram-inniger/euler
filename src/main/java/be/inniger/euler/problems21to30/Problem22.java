@@ -20,14 +20,12 @@
 package be.inniger.euler.problems21to30;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Scanner;
 import org.jetbrains.annotations.NotNull;
 
 import be.inniger.euler.Problem;
+import be.inniger.euler.util.Misc;
 
 /**
  * Problem from Project Euler:
@@ -41,12 +39,14 @@ import be.inniger.euler.Problem;
  */
 public class Problem22 implements Problem {
 
+  private static final String PATH = "src/main/resources/problems/Problem22.txt";
+
   @NotNull
   @Override
   public String solve() {
     List<String> names;
     try {
-      names = readNames();
+      names = Misc.readWords(new File(PATH), ",");
     }
     catch (Exception ignore) {
       throw new RuntimeException("Could not read the names file, halting the program... ");
@@ -60,27 +60,6 @@ public class Problem22 implements Problem {
     }
 
     return "" + sum;
-  }
-
-  /**
-   * Read the names file into a List
-   *
-   * @return All of the names in the file in List form
-   * @throws FileNotFoundException Should the file be missing
-   */
-  @NotNull
-  private List<String> readNames() throws FileNotFoundException {
-    List<String> names = new ArrayList<>();
-    Scanner scanner = new Scanner(new File("src/main/resources/problems/Problem22.txt"));
-    scanner.useDelimiter(",");
-
-    while (scanner.hasNext()) {
-      String quotedName = scanner.next(); // E.g. "MARI"
-      String name = quotedName.substring(1, quotedName.length()-1); // E.g. MARI (without the quotes)
-      names.add(name);
-    }
-
-    return names;
   }
 
   /**

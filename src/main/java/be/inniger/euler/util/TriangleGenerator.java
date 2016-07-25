@@ -23,6 +23,7 @@ import java.util.Iterator;
 
 /**
  * Class that generates triangular numbers.
+ * All of these adhere to "t_n = ½n(n+1)".
  * E.g.:
  * 1 -> 1           = 1
  * 2 -> 1 + 2       = 3
@@ -59,5 +60,27 @@ public class TriangleGenerator implements Iterable<Long> {
         return retVal;
       }
     };
+  }
+
+  /**
+   * Method to verify if a number is indeed a triangle number or not.
+   * To verify this it suffices to solve "t_n = ½n(n+1)" for "n" and verifying "n" is a positive integer number.
+   *
+   * t_n = ½*n*(n+1)
+   * n*(n+1) - 2*t_n = 0
+   * n^2 + n - 2*t_n = 0
+   *
+   * root 1: (-1 + sqrt(1 + 8*t_n)) / 2
+   * root 2: (-1 - sqrt(1 + 8*t_n)) / 2
+   *
+   * As the second root is strictly negative, and we are testing for positive integers it can be discarded.
+   * This leaves us with the simple test of checking whether the first root results in a positive integer or not.
+   *
+   * @param num The number under test
+   * @return True if the number is a triangle number
+   */
+  public static boolean isTriangle(int num) {
+    double n = (-1 + Math.sqrt(1 + 8*num)) / 2;
+    return n == (int) n; // Actual Integer check
   }
 }
