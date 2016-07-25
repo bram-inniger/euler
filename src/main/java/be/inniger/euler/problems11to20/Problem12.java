@@ -22,6 +22,7 @@ package be.inniger.euler.problems11to20;
 import org.jetbrains.annotations.NotNull;
 
 import be.inniger.euler.Problem;
+import be.inniger.euler.util.CataclysmicException;
 import be.inniger.euler.util.Maths;
 import be.inniger.euler.util.TriangleGenerator;
 
@@ -57,6 +58,6 @@ public class Problem12 implements Problem {
       }
     }
 
-    throw new RuntimeException("Error calculating Problem12, this should never happen! ");
+    throw new CataclysmicException();
   }
 }

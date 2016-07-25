@@ -22,6 +22,7 @@ package be.inniger.euler.problems41to50;
 import org.jetbrains.annotations.NotNull;
 
 import be.inniger.euler.Problem;
+import be.inniger.euler.util.CataclysmicException;
 import be.inniger.euler.util.DigitPermutationGenerator;
 import be.inniger.euler.util.Maths;
 import be.inniger.euler.util.Prime;
@@ -63,6 +64,6 @@ public class Problem41 implements Problem {
       }
     }
 
-    throw new RuntimeException("Cataclysmic event occurred, should not reach this... ");
+    throw new CataclysmicException();
   }
 }

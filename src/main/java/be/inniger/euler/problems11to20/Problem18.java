@@ -29,6 +29,7 @@ import java.util.List;
 import org.jetbrains.annotations.NotNull;
 
 import be.inniger.euler.Problem;
+import be.inniger.euler.util.CataclysmicException;
 
 /**
  * Problem from Project Euler:
@@ -115,7 +116,7 @@ public class Problem18 implements Problem {
       }
     }
     catch (IOException e) {
-      throw new RuntimeException("The unexpected happened, cannot recover: " + e.getMessage());
+      throw new CataclysmicException(e);
     }
 
     return pyramid;

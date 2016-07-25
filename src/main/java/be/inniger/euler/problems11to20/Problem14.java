@@ -24,6 +24,7 @@ import java.util.Map;
 import org.jetbrains.annotations.NotNull;
 
 import be.inniger.euler.Problem;
+import be.inniger.euler.util.CataclysmicException;
 
 /**
  * Problem from Project Euler:
@@ -106,7 +107,7 @@ public class Problem14 implements Problem {
         .sorted(Map.Entry.<Long, Long>comparingByValue().reversed())
         .limit(1L)
         .reduce((acc, i) -> i)
-        .orElseThrow(() -> new RuntimeException("Cataclysmic issue occurred, cannot recover! "))
+        .orElseThrow(CataclysmicException::new)
         .getKey();
   }
 }

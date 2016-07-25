@@ -25,6 +25,7 @@ import java.util.stream.Collectors;
 import org.jetbrains.annotations.NotNull;
 
 import be.inniger.euler.Problem;
+import be.inniger.euler.util.CataclysmicException;
 import be.inniger.euler.util.Misc;
 import be.inniger.euler.util.TriangleGenerator;
 
@@ -70,8 +71,8 @@ public class Problem42 implements Problem {
     try {
       words = Misc.readWords(new File(PATH), ",");
     }
-    catch (Exception ignore) {
-      throw new RuntimeException("Could not read the words file, halting the program... ");
+    catch (Exception e) {
+      throw new CataclysmicException(e);
     }
 
     // Convert the words into their values

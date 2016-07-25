@@ -22,6 +22,7 @@ package be.inniger.euler.problems01to10;
 import org.jetbrains.annotations.NotNull;
 
 import be.inniger.euler.Problem;
+import be.inniger.euler.util.CataclysmicException;
 
 /**
  * Problem from Project Euler:
@@ -54,6 +55,6 @@ public class Problem09 implements Problem {
       }
     }
 
-    throw new RuntimeException("Error calculating Problem09, this should never happen! ");
+    throw new CataclysmicException();
   }
 }

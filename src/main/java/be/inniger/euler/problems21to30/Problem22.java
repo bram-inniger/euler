@@ -25,6 +25,7 @@ import java.util.List;
 import org.jetbrains.annotations.NotNull;
 
 import be.inniger.euler.Problem;
+import be.inniger.euler.util.CataclysmicException;
 import be.inniger.euler.util.Misc;
 
 /**
@@ -48,8 +49,8 @@ public class Problem22 implements Problem {
     try {
       names = Misc.readWords(new File(PATH), ",");
     }
-    catch (Exception ignore) {
-      throw new RuntimeException("Could not read the names file, halting the program... ");
+    catch (Exception e) {
+      throw new CataclysmicException(e);
     }
 
     names.sort(Comparator.naturalOrder());
