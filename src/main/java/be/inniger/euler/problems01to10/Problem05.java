@@ -42,9 +42,9 @@ public class Problem05 implements Problem {
   public String solve() {
     long solution = getAllFactors(20)
         .entrySet()
-        .stream()
+        .parallelStream()
         .mapToLong(i -> Maths.pow(i.getKey(), i.getValue()))
-        .reduce(1, (acc, i) -> acc *= i);
+        .reduce(1, Math::multiplyExact);
     return "" + solution;
   }
 

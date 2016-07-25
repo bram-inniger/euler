@@ -70,8 +70,9 @@ public class Problem40 implements Problem {
   public String solve() {
     return "" +
         digitIndices
-            .stream()
-            .reduce(1, (acc, i) -> acc *= getDigit(i));
+            .parallelStream()
+            .mapToInt(this::getDigit)
+            .reduce(1, Math::multiplyExact);
   }
 
   /**
