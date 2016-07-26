@@ -36,14 +36,33 @@ public class DigitPermutationGeneratorTest {
    * This checks both the Iterator#next() and Iterator#hasNext() methods, via the default Iterator#forEachRemaining.
    */
   @Test
-  public void testGenerator() {
-    DigitPermutationGenerator gen = new DigitPermutationGenerator(3);
+  public void testGeneratorFromOne() {
+    String expected = "[123, 132, 213, 231, 312, 321]";
+    String actual = testGenerator(new DigitPermutationGenerator(1, 3));
+    assertEquals(expected, actual);
+  }
 
+  /**
+   * Straightforward test: generate all the iterations of the number 0, 1 and 2, then verify all of them passed by.
+   * This checks both the Iterator#next() and Iterator#hasNext() methods, via the default Iterator#forEachRemaining.
+   */
+  @Test
+  public void testGeneratorFromZero() {
+    String expected = "[12, 21, 102, 120, 201, 210]";
+    String actual = testGenerator(new DigitPermutationGenerator(0, 2));
+    assertEquals(expected, actual);
+  }
+
+  /**
+   * Run the actual to be tested logic for any DigitPermutationGenerator, and return a List of generated permutations.
+   *
+   * @param gen The PermutationGenerator that is used
+   * @return A String representing the generated permutations
+   */
+  private String testGenerator(DigitPermutationGenerator gen) {
     List<Long> permutations = new ArrayList<>();
     gen.forEachRemaining(permutations::add);
 
-    String expected = "[123, 132, 213, 231, 312, 321]";
-    String actual = permutations.toString();
-    assertEquals(expected, actual);
+    return permutations.toString();
   }
 }

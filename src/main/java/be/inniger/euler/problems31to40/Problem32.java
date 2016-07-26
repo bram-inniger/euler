@@ -91,7 +91,7 @@ public class Problem32 implements Problem {
   private Collection<Long> determineProducts() {
     int longestL = N / 2;
     Set<Long> products = new HashSet<>();                     // Cheap trick to get free de-duplication (we want to count every product only once)
-    DigitPermutationGenerator gen = new DigitPermutationGenerator(N);
+    DigitPermutationGenerator gen = new DigitPermutationGenerator(1, N);
 
     while (gen.hasNext()) {                                   // Loop over every single permutation
       long perm = gen.next();

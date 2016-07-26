@@ -66,15 +66,16 @@ import org.jetbrains.annotations.NotNull;
  * @author Bram Inniger
  * @version 1.0
  */
-public class DigitPermutationGenerator extends PermutationGenerator<Integer, Long> {
+public class DigitPermutationGenerator extends PermutationGenerator<Integer, Long, DigitPermutationConfig> {
 
   /**
-   * Constructor calling the parent constructor.
+   * Creates the specific Config Object used to properly setup this PermutationGenerator implementation.
    *
-   * @param n Number of digits to iterate over (1 -> n, inclusive)
+   * @param from The starting value of the first digit (usually 0 or 1)
+   * @param until The final digit to permute over from starting value -> this value (inclusive)
    */
-  public DigitPermutationGenerator(int n) {
-    super(n);
+  public DigitPermutationGenerator(int from, int until) {
+    super(new DigitPermutationConfig(from, until));
   }
 
   /**
@@ -84,9 +85,9 @@ public class DigitPermutationGenerator extends PermutationGenerator<Integer, Lon
    */
   @NotNull
   @Override
-  protected Stack<Permutation> initStack(int nrElements) {
+  protected Stack<Permutation> initStack(DigitPermutationConfig config) {
     List<Integer> digits = IntStream
-        .rangeClosed(1, nrElements)
+        .rangeClosed(config.from, config.until)
         .boxed()
         .collect(Collectors.toList());         // Generate List containing all digits of the permutations
 
@@ -107,5 +108,20 @@ public class DigitPermutationGenerator extends PermutationGenerator<Integer, Lon
   @Override
   protected Long combine(@NotNull Long permutation, @NotNull Integer element) {
     return 10 * permutation + element;
+  }
+}
+
+/**
+ * Configuration for this specific PermutationGenerator implementation.
+ * Sets the starting and ending values for the digits.
+ */
+class DigitPermutationConfig implements PermutationConfig {
+
+  protected final int from;
+  protected final int until;
+
+  public DigitPermutationConfig(int from, int until) {
+    this.from = from;
+    this.until = until;
   }
 }

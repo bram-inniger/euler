@@ -24,7 +24,6 @@ import org.jetbrains.annotations.NotNull;
 import be.inniger.euler.Problem;
 import be.inniger.euler.util.CataclysmicException;
 import be.inniger.euler.util.DigitPermutationGenerator;
-import be.inniger.euler.util.Maths;
 import be.inniger.euler.util.Prime;
 
 /**
@@ -51,7 +50,7 @@ public class Problem41 implements Problem {
     long largestPrime = -1;
 
     for (int i = nrDigits; i > 0; i--) {
-      DigitPermutationGenerator gen = new DigitPermutationGenerator(i);
+      DigitPermutationGenerator gen = new DigitPermutationGenerator(1, i);
       while (gen.hasNext()) {
         long prime = gen.next();
         if (Prime.isPrime(prime) && prime > largestPrime) {

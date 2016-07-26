@@ -44,7 +44,7 @@ import org.jetbrains.annotations.NotNull;
  * @author Bram Inniger
  * @version 1.0
  */
-public abstract class PermutationGenerator<T, R> implements Iterator<R> {
+public abstract class PermutationGenerator<T, R, C extends PermutationConfig> implements Iterator<R> {
 
   private static final Logger log = LogManager.getLogger(DigitPermutationGenerator.class);
   private final Stack<Permutation> stack;
@@ -52,10 +52,10 @@ public abstract class PermutationGenerator<T, R> implements Iterator<R> {
   /**
    * Let the subclass initiate the Stack with a proper starting value.
    *
-   * @param nrElements The nr of elements to make permutations of
+   * @param config The configuration containing per-implementation details on the behaviour and initialisation of the Permutation Stack
    */
-  protected PermutationGenerator(int nrElements) {
-    this.stack = initStack(nrElements);
+  protected PermutationGenerator(C config) {
+    this.stack = initStack(config);
   }
 
   /**
@@ -92,7 +92,7 @@ public abstract class PermutationGenerator<T, R> implements Iterator<R> {
    * @return A now properly initialised Stack
    */
   @NotNull
-  protected abstract Stack<Permutation> initStack(int nrElements);
+  protected abstract Stack<Permutation> initStack(C config);
 
   /**
    * Pop the top of the Stack, and decompose the elements to be handled into new Stack elements.
@@ -168,4 +168,10 @@ public abstract class PermutationGenerator<T, R> implements Iterator<R> {
           .toString();
     }
   }
+}
+
+/**
+ * Interface to be implemented, containing the behaviour of the implementing PermutationGenerator.
+ */
+interface PermutationConfig {
 }
