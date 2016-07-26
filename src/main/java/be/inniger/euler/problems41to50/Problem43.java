@@ -19,9 +19,14 @@
 
 package be.inniger.euler.problems41to50;
 
+import java.util.Iterator;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 import org.jetbrains.annotations.NotNull;
 
 import be.inniger.euler.Problem;
+import be.inniger.euler.util.DigitPermutationGenerator;
+import be.inniger.euler.util.Maths;
 
 /**
  * Problem from Project Euler:
@@ -42,9 +47,48 @@ import be.inniger.euler.Problem;
  */
 public class Problem43 implements Problem {
 
+  /**
+   * TODO: rewrite this naive solution to a more optimised one
+   *
+   * Stream over all permutations containing the digits 0 to 9 (inclusive), these are by definition exactly all of the pandigital numbers.
+   * Test them if they follow the property above of String divisibility.
+   * Sum the ones that do: done!
+   */
   @NotNull
   @Override
   public String solve() {
-    return "";
+    return "" +
+        streamFrom(new DigitPermutationGenerator(0, 9))
+            .filter(this::isSubStringDivisable)
+            .mapToLong(Long::longValue)
+            .sum();
+  }
+
+  /**
+   * Create a Stream from any arbitrary Iterator.
+   *
+   * @param iterator The Iterator to make a Stream of
+   * @param <T> The type of the Iterator and the resulting Stream
+   * @return A Stream from the Iterator
+   */
+  private <T> Stream<T> streamFrom(Iterator<T> iterator) {
+    Iterable<T> iterable = () -> iterator;
+    return StreamSupport.stream(iterable.spliterator(), true);
+  }
+
+  /**
+   * Test whether a number has the String divisibility property described above.
+   *
+   * @param num The number under test
+   * @return True if the number is String divisible
+   */
+  private boolean isSubStringDivisable(long num) {
+    return Maths.getPart(num, 7, 10) % 17 == 0
+        && Maths.getPart(num, 6, 9) % 13 == 0
+        && Maths.getPart(num, 5, 8) % 11 == 0
+        && Maths.getPart(num, 4, 7) % 7 == 0
+        && Maths.getPart(num, 3, 6) % 5 == 0
+        && Maths.getPart(num, 2, 5) % 3 == 0
+        && Maths.getPart(num, 1, 4) % 2 == 0;
   }
 }
