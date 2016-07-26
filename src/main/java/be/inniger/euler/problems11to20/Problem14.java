@@ -104,9 +104,7 @@ public class Problem14 implements Problem {
   private long getMaxChainLength() {
     return chainLengths.entrySet()
         .stream()
-        .sorted(Map.Entry.<Long, Long>comparingByValue().reversed())
-        .limit(1L)
-        .reduce((acc, i) -> i)
+        .max((a, b) -> a.getValue().intValue() - b.getValue().intValue())
         .orElseThrow(CataclysmicException::new)
         .getKey();
   }
