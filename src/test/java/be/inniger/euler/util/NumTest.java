@@ -21,36 +21,47 @@ package be.inniger.euler.util;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.function.IntPredicate;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 
 /**
  * @author Bram Inniger
  * @version 1.0
  */
-public class TriangleGeneratorTest {
+public class NumTest {
+
+  @Test
+  public void testIsTriangle() {
+    String expected = "[0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66, 78, 91]";
+    String actual = getFilteredResult(Num::isTriangle);
+
+    assertEquals(expected, actual);
+  }
+
+  @Test
+  public void testIsPentagonal() {
+    String expected = "[1, 5, 12, 22, 35, 51, 70, 92]";
+    String actual = getFilteredResult(Num::isPentagonal);
+
+    assertEquals(expected, actual);
+  }
 
   /**
-   * Test the Iterator functionality by iteratively asking the first 10 triangle numbers.
+   * Shared logic to filter all numbers from 0 up to 100 (included) and return the result.
+   *
+   * @param predicate The predicate to use as a filter
+   * @return The result of the filtering
    */
-  @Test
-  public void testGenerator() {
-    TriangleGenerator gen = new TriangleGenerator();
-    List<Long> triangles = new ArrayList<>();
-
-    int nrSeen = 0;
-    for (long triangle : gen) {
-      triangles.add(triangle);
-      nrSeen++;
-
-      if (nrSeen >= 10) {
-        break;
-      }
-    }
-
-    String expected = "[1, 3, 6, 10, 15, 21, 28, 36, 45, 55]";
-    String actual = triangles.toString();
-    assertEquals(expected, actual);
+  @NotNull
+  private String getFilteredResult(@NotNull IntPredicate predicate) {
+    return IntStream
+        .rangeClosed(0, 100)
+        .filter(predicate)
+        .boxed()
+        .collect(Collectors.toList())
+        .toString();
   }
 }

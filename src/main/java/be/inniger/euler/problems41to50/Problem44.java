@@ -24,6 +24,7 @@ import java.util.Set;
 import org.jetbrains.annotations.NotNull;
 
 import be.inniger.euler.Problem;
+import be.inniger.euler.util.Num;
 
 /**
  * Problem from Project Euler:
@@ -85,7 +86,7 @@ public class Problem44 implements Problem {
 
       for (long p2 : pentagonals) {
         if (pentagonals.contains(p1-p2) && // Can use the cache for this
-            isPentagonal(p1+p2)) {         // Can't use the cache for this
+            Num.isPentagonal(p1+p2)) {     // Can't use the cache for this
           return "" + (p1-p2);
         }
       }
@@ -94,31 +95,4 @@ public class Problem44 implements Problem {
     }
   }
 
-  /**
-   * Determine if a number is a pentagonal number.
-   *
-   * The strategy applied is similar as was done in TriangleGenerator.
-   * We know pentagonal numbers are in the form "Pn=n(3n−1)/2".
-   * Solving this to n gives us a way to fill in any number as Pn, and checking if the resulting n is a positive integer or not.
-   * If it is, then we know Pn is a pentagonal number.
-   *
-   * P_n = n * (3*n−1) / 2
-   * 2*P_n = 3*n^2 - n
-   * 3*n^2 - n - 2*P_n = 0
-   *
-   * root 1: (1 + sqrt(1 + 24*P_n)) / 6
-   * root 2: (1 - sqrt(1 + 24*P_n)) / 6
-   *
-   * As the P_n values we will test are always strictly positive the sqrt will always be greater than 1.
-   * Because of this the second root will always be a strictly negative number, meaning we can safely ignore it, as it is always an invalid result.
-   *
-   * Simply testing whether a P_n produces an integer number using the first root's formula tells us if this number is pentagonal or not.
-   *
-   * @param num The number under test
-   * @return True if the number is a pentagonal number
-   */
-  private boolean isPentagonal(long num) {
-    double n = (1 + Math.sqrt(1 + 24*num)) / 6;
-    return n == (long) n;
-  }
 }

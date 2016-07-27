@@ -27,7 +27,7 @@ import org.jetbrains.annotations.NotNull;
 import be.inniger.euler.Problem;
 import be.inniger.euler.util.CataclysmicException;
 import be.inniger.euler.util.Misc;
-import be.inniger.euler.util.TriangleGenerator;
+import be.inniger.euler.util.Num;
 
 /**
  * Problem from Project Euler:
@@ -56,7 +56,7 @@ public class Problem42 implements Problem {
     return "" +
         getWordValues()
             .parallelStream()
-            .filter(TriangleGenerator::isTriangle)
+            .filter(Num::isTriangle)
             .count();
   }
 

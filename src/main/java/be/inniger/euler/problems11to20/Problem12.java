@@ -22,9 +22,7 @@ package be.inniger.euler.problems11to20;
 import org.jetbrains.annotations.NotNull;
 
 import be.inniger.euler.Problem;
-import be.inniger.euler.util.CataclysmicException;
 import be.inniger.euler.util.Maths;
-import be.inniger.euler.util.TriangleGenerator;
 
 /**
  * Problem from Project Euler:
@@ -52,12 +50,16 @@ public class Problem12 implements Problem {
   @NotNull
   @Override
   public String solve() {
-    for (long triangle : new TriangleGenerator()) {
+    int n = 1;
+
+    while (true) {
+      long triangle = n * (n-1) / 2;
+
       if (Maths.getDivisors(triangle).size() > NR_DIVISORS) {
         return "" + triangle;
       }
-    }
 
-    throw new CataclysmicException();
+      n++;
+    }
   }
 }
