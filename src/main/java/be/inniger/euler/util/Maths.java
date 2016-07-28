@@ -304,4 +304,16 @@ public class Maths {
   public static long concatenate(long a, long b) {
     return a * pow(10, getNrDigits(b)) + b;
   }
+
+  /**
+   * Check if a number is a square number.
+   * Simply calculate the square root, and verify that it is an integer number.
+   *
+   * @param num The number to test
+   * @return True if the number is indeed a square number
+   */
+  public static boolean isSquare(long num) {
+    double root = Math.sqrt(num);
+    return root == (long) root;
+  }
 }

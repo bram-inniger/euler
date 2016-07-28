@@ -24,6 +24,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.stream.Collectors;
+import java.util.stream.LongStream;
 import org.junit.Test;
 
 /**
@@ -165,5 +167,18 @@ public class MathsTest {
     assertEquals(1234, concatenate(1L, 234L));
     assertEquals(1234, concatenate(12L, 34L));
     assertEquals(1234, concatenate(123L, 4L));
+  }
+
+  @Test
+  public void testIsSquare() {
+    String expected = "[0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100]";
+    String actual = LongStream
+        .rangeClosed(0, 100)
+        .filter(Maths::isSquare)
+        .boxed()
+        .collect(Collectors.toList())
+        .toString();
+
+    assertEquals(expected, actual);
   }
 }
