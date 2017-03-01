@@ -109,6 +109,28 @@ public class DigitPermutationGenerator extends PermutationGenerator<Integer, Lon
   protected Long combine(@NotNull Long permutation, @NotNull Integer element) {
     return 10 * permutation + element;
   }
+
+  public static boolean isDigitPermutation(int a, int b) {
+    int[] digits = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+    while (a > 0) {
+      digits[a % 10]++;
+      a /= 10;
+    }
+
+    while (b > 0) {
+      digits[b % 10]--;
+      b /= 10;
+    }
+
+    for (int digit : digits) {
+      if (digit != 0) {
+        return false;
+      }
+    }
+
+    return true;
+  }
 }
 
 /**
