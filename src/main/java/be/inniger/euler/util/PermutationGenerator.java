@@ -23,9 +23,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Stack;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Generates permutations of type R over n elements of type T
@@ -46,7 +47,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public abstract class PermutationGenerator<T, R, C extends PermutationConfig> implements Iterator<R> {
 
-  private static final Logger log = LogManager.getLogger(DigitPermutationGenerator.class);
+  private static final Logger log = LoggerFactory.getLogger(DigitPermutationGenerator.class);
   private final Stack<Permutation> stack;
 
   /**
