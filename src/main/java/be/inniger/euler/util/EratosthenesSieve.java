@@ -1,6 +1,7 @@
 package be.inniger.euler.util;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.IntStream;
 
 import static be.inniger.euler.util.Math.roundedSqrt;
@@ -14,11 +15,10 @@ public class EratosthenesSieve {
   private final List<Boolean> sieve;
 
   public EratosthenesSieve(int size) {
-    if (size < 2) {
-      throw new IllegalArgumentException(format("Size %d contains no primes! ", size));
-    }
-
-    this.sieve = calculateSieve(size);
+    this.sieve = Optional.of(size)
+        .filter(__ -> size >= 2)
+        .map(this::calculateSieve)
+        .orElseThrow(() -> new IllegalArgumentException(format("Size %d contains no primes! ", size)));
   }
 
   public List<Integer> getPrimes() {
