@@ -19,6 +19,9 @@
 
 package be.inniger.euler.util;
 
+import static java.lang.Math.floor;
+import static java.lang.Math.sqrt;
+
 /**
  * Util methods to work with prime numbers.
  *
@@ -121,7 +124,7 @@ public class Prime {
       return true;
     }
     else {
-      long upperLim = (long) Math.floor(Math.sqrt(value));
+      long upperLim = (long) floor(sqrt(value));
       long l = 5L;
 
       while (l <= upperLim) {

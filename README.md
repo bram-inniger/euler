@@ -1,26 +1,20 @@
 # Project Euler solutions repository
 
+## IMPORTANT
+
+This repo is in the process of being rewritten to much nicer functional/declarative code.
+Furthermore the goal will be to keep both this repository an its sister repo (euler-kotlin) in sync. // TODO add link
+Code written in 2018 is the new nicer one. Code written in 2016 probably does not reflect my current coding skill an practices.
+
 ## About
 
 A place for me to conveniently story my Project Euler solutions.
-Serves also to further solidify mastery of git, java 8, maven...
+Serves also to further practice git, java 8, maven...
 
-## How to run
+## How to read
 
 Each and every problem has its own class file containing the code how to solve it.
 Every time a test file accompanies the class containing the actual solution, and validating the code.
-
-Furthermore a nicely shaded JAR gets created on build, allowing to solve just a specific problem.
-
-    $ git clone git@github.com:bram-inniger/euler.git Euler
-    $ cd Euler
-    $ mvn package -DskipTests # YOLO
-    $ java -jar target/euler.jar 1
-
-## Known issues
-
-1. Only Euler problems solved and uploaded by me can be solved by this tool...
-2. The input argument has the be _exactly_ a single integer specifying the problem number.
 
 ## License
 

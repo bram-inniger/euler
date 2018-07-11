@@ -32,6 +32,8 @@ import java.util.Set;
 import java.util.stream.IntStream;
 import org.jetbrains.annotations.NotNull;
 
+import static java.lang.Math.*;
+
 /**
  * General use mathematics related utilities.
  * Names "Maths" to evade namespace issues with "java.lang.Math".
@@ -111,7 +113,7 @@ public class Maths {
   @NotNull
   public static Set<Long> getDivisors(long num) {
     Set<Long> divisors = new HashSet<>();
-    long upperBound = (long) Math.sqrt(num); // The largest divisor, apart from num itself, cannot be larger than sqrt(num)
+    long upperBound = (long) sqrt(num); // The largest divisor, apart from num itself, cannot be larger than sqrt(num)
 
     for (long i = 1; i <= upperBound; i++) {
       if (num % i == 0) {
@@ -192,7 +194,7 @@ public class Maths {
       return Collections.singletonList(0);
     }
 
-    num = Math.abs(num);
+    num = abs(num);
     List<Integer> digits = new LinkedList<>();
 
     while (num != 0) {
@@ -214,7 +216,7 @@ public class Maths {
       return 1;
     }
 
-    return (int) (Math.floor(Math.log10(Math.abs(num)))) + 1;
+    return (int) (floor(log10(abs(num)))) + 1;
   }
 
   /**
@@ -313,7 +315,7 @@ public class Maths {
    * @return True if the number is indeed a square number
    */
   public static boolean isSquare(long num) {
-    double root = Math.sqrt(num);
+    double root = sqrt(num);
     return root == (long) root;
   }
 }
