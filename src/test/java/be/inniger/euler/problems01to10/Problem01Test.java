@@ -19,20 +19,16 @@
 
 package be.inniger.euler.problems01to10;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
 
-/**
- * @author Bram Inniger
- * @version 1.0
- */
+import static org.junit.Assert.assertEquals;
+
 public class Problem01Test {
 
   @Test
   public void testSolve() {
-    String expected = "233168";
-    String actual = new Problem01().solve();
+    int expected = 233168;
+    int actual = new Problem01().solve();
 
     assertEquals(expected, actual);
   }
