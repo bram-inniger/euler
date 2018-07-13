@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 
 import static be.inniger.euler.util.Math.roundedSqrt;
+import static java.lang.Math.floor;
 import static java.lang.String.format;
 import static java.util.Arrays.asList;
 import static java.util.Arrays.fill;
@@ -34,14 +35,17 @@ public class EratosthenesSieve {
     sieve[0] = false;
     sieve[1] = false;
 
-    for (int i = 2; i <= roundedSqrt(size); i++) {
-      if (sieve[i]) {
-        for (int j = i * i; j < sieve.length - 1; j += i) {
-          sieve[j] = false;
-        }
-      }
-    }
+    IntStream.rangeClosed(2, roundedSqrt(size))
+        .filter(i -> sieve[i])
+        .flatMap(i -> steppedRangeClosed(i * i, sieve.length - 1, i))
+        .forEach(j -> sieve[j] = false);
 
     return asList(sieve);
+  }
+
+  private IntStream steppedRangeClosed(int startInclusive, int endInclusive, int stepSize) {
+    long nrSteps = (long) floor((double) (endInclusive - startInclusive) / (double) stepSize + (double) 1);
+
+    return IntStream.iterate(startInclusive, i -> i + stepSize).limit(nrSteps);
   }
 }
