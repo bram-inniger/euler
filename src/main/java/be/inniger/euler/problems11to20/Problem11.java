@@ -47,7 +47,7 @@ public class Problem11 {
   }
 
   private List<List<Integer>> readGrid() {
-    try (InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("problems/Problem08.txt");
+    try (InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("problems/Problem11.txt");
          InputStreamReader isr = new InputStreamReader(is);
          BufferedReader br = new BufferedReader(isr)) {
       return br.lines() // Results in Stream<String>, 1 String per line in the file

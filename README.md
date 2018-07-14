@@ -5,6 +5,7 @@
 This repo is in the process of being rewritten to much nicer functional/declarative code.
 Furthermore the goal will be to keep both this repository an its sister repo (euler-kotlin) in sync. // TODO add link
 Code written in 2018 is the new nicer one. Code written in 2016 probably does not reflect my current coding skill an practices.
+The 2016 code at the moment has been deleted but can easily be retrieved by going into the repo history. // TODO add link to older state
 
 ## About
 
