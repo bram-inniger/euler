@@ -1,51 +1,44 @@
-/*
- * Project Euler solution repository
- * Copyright (C) 2016 Bram Inniger
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software Foundation,
- * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
- */
-
 package be.inniger.euler.problems01to10;
 
-import org.jetbrains.annotations.NotNull;
+import be.inniger.euler.util.EratosthenesSieve;
 
-import be.inniger.euler.Problem;
-import be.inniger.euler.util.Prime;
+import java.util.stream.DoubleStream;
 
 /**
- * Problem from Project Euler:
+ * 10001st prime
  * <p>
  * By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
  * What is the 10 001st prime number?
- *
- * @author Bram Inniger
- * @version 1.0
  */
-public class Problem07 implements Problem {
+public class Problem07 {
 
-  private static final int PRIME_NR = 10001;
+  // -1 as the problem specification is 1-indexed but Java's collections are 0-indexed
+  private static final int PRIME_INDEX = 10_001 - 1;
 
-  @NotNull
-  @Override
-  public String solve() {
-    long prime = -1L; // Not a prime, just the start value
+  public int solve() {
+    return new EratosthenesSieve(getSieveSize()).getPrimes().get(PRIME_INDEX);
+  }
 
-    for (int i = 0; i < PRIME_NR; i++) {
-      prime = Prime.getNext(prime);
-    }
-
-    return "" + prime;
+  /**
+   * Calculate a reasonable upper bound to use as sieve size, in a way that the sieve will contain the 10_001th prime.
+   * The code below very roughly calculates the inverse of a Prime-counting function.
+   * Details here: https://en.wikipedia.org/wiki/Prime-counting_function
+   * <p>
+   * The approximate function to count primes "pi(N) = N / ln(N)" is reversed by trying exponentially larger N values,
+   * until "pi(N)" evaluates to something larger than 10_001.
+   * This way we know that calculating the sieve up until N should contain the 10_001th prime.
+   * <p>
+   * When running the program for the 10_001th prime we find the following values:
+   * * Prime nr. 10_001 = 104743
+   * * Upper sieve size = 125278
+   * Showing that indeed the upper bound is reasonably guessed!
+   */
+  private int getSieveSize() {
+    return DoubleStream.iterate(10.0, n -> n * 1.1)
+        .filter(n -> n / java.lang.Math.log(n) > PRIME_INDEX)
+        .boxed()
+        .findFirst()
+        .map(Double::intValue)
+        .orElseThrow(IllegalArgumentException::new);
   }
 }
