@@ -8,9 +8,6 @@ public class Problem11Test {
 
   @Test
   public void testSolve() {
-    int expected = 70600674;
-    int actual = new Problem11().solve();
-
-    assertEquals(expected, actual);
+    assertEquals(70600674, new Problem11().solve());
   }
 }
