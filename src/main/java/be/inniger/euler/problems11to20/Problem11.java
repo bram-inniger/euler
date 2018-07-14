@@ -1,6 +1,8 @@
 package be.inniger.euler.problems11to20;
 
 import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -45,14 +47,18 @@ public class Problem11 {
   }
 
   private List<List<Integer>> readGrid() {
-    return new BufferedReader(new InputStreamReader(
-        Thread.currentThread().getContextClassLoader().getResourceAsStream("problems/Problem11.txt")))
-        .lines() // Results in Stream<String>, 1 String per line in the file
-        .filter(line -> !line.isEmpty()) // Ignore empty lines
-        .map(line -> line.split(" "))
-        .map(Stream::of) // Results in Stream<Stream<String>>, split every line in its separate String values
-        .map(numberStream -> numberStream.map(Integer::parseInt).collect(toList()))
-        .collect(toList()); // Results in List<List<Integer>>, the grid, by converting every single String into an Integer
+    try (InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("problems/Problem08.txt");
+         InputStreamReader isr = new InputStreamReader(is);
+         BufferedReader br = new BufferedReader(isr)) {
+      return br.lines() // Results in Stream<String>, 1 String per line in the file
+          .filter(line -> !line.isEmpty()) // Ignore empty lines
+          .map(line -> line.split(" "))
+          .map(Stream::of) // Results in Stream<Stream<String>>, split every line in its separate String values
+          .map(numberStream -> numberStream.map(Integer::parseInt).collect(toList()))
+          .collect(toList()); // Results in List<List<Integer>>, the grid, by converting every single String into an Integer
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   private boolean doesGridFailValidation() {
