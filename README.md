@@ -18,7 +18,6 @@ Each and every problem has its own class file containing the code how to solve i
 Every time a test file accompanies the class containing the actual solution, and validating the code.
 
 ## Clean-up TODO
-* Cleanly extract reading from disk logic
 * Extract proper value classes in a value-package, link this doc: https://docs.oracle.com/javase/8/docs/api/java/lang/doc-files/ValueBased.html
 * Clean up the util classes, maybe also add note on what makes a util class
 * Extract code duplication (Factor, getFrequency) + tests

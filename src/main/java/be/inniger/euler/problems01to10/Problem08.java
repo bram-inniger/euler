@@ -1,13 +1,17 @@
 package be.inniger.euler.problems01to10;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import static be.inniger.euler.util.StreamUtil.readProblemDataAndTransform;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
+/**
+ * Largest product in a series
+ * <p>
+ * The four adjacent digits in the 1000-digit number that have the greatest product are 9 × 9 × 8 × 9 = 5832.
+ * Find the thirteen adjacent digits in the 1000-digit number that have the greatest product. What is the value of this product?
+ */
 public class Problem08 {
 
   private static final int NR_ADJACENT_DIGITS = 13;
@@ -25,17 +29,10 @@ public class Problem08 {
   }
 
   private List<Integer> readNumber() {
-    try (var is = Thread.currentThread().getContextClassLoader().getResourceAsStream("problems/Problem08.txt");
-         var isr = new InputStreamReader(is);
-         var br = new BufferedReader(isr)) {
-      return br.lines()
-          .filter(line -> !line.isEmpty()) // Ignore empty lines
-          .flatMap(line -> line.chars()
-              .boxed()
-              .map(Character::getNumericValue))
-          .collect(toUnmodifiableList());
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
+    return readProblemDataAndTransform("Problem08", lines ->
+        lines.flatMap(line -> line.chars()
+            .boxed()
+            .map(Character::getNumericValue))
+            .collect(toUnmodifiableList()));
   }
 }

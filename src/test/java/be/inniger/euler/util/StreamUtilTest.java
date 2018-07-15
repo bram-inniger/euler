@@ -4,7 +4,9 @@ import org.junit.Test;
 
 import java.util.List;
 
+import static be.inniger.euler.util.StreamUtil.readProblemDataAndTransform;
 import static be.inniger.euler.util.StreamUtil.reverseStream;
+import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toUnmodifiableList;
 import static org.junit.Assert.assertEquals;
 
@@ -19,5 +21,10 @@ public class StreamUtilTest {
     assertEquals(List.of('d', 'c', 'b', 'a'), reverseStream(List.of('a', 'b', 'c', 'd')).collect(toUnmodifiableList()));
     assertEquals(List.of(false, true), reverseStream(List.of(true, false)).collect(toUnmodifiableList()));
     assertEquals(List.of("right", "left"), reverseStream(List.of("left", "right")).collect(toUnmodifiableList()));
+  }
+
+  @Test
+  public void canReadProblemDataAndTransform() {
+    assertEquals("Hello,World", readProblemDataAndTransform("TestProblem", lines -> lines.collect(joining(","))));
   }
 }

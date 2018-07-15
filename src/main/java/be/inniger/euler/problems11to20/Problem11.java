@@ -1,12 +1,10 @@
 package be.inniger.euler.problems11to20;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import static be.inniger.euler.util.StreamUtil.readProblemDataAndTransform;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
 /**
@@ -39,18 +37,12 @@ public class Problem11 {
   }
 
   private List<List<Integer>> readGrid() {
-    try (var is = Thread.currentThread().getContextClassLoader().getResourceAsStream("problems/Problem11.txt");
-         var isr = new InputStreamReader(is);
-         var br = new BufferedReader(isr)) {
-      return br.lines() // Results in Stream<String>, 1 String per line in the file
-          .filter(line -> !line.isEmpty()) // Ignore empty lines
-          .map(line -> line.split(" "))
-          .map(Stream::of) // Results in Stream<Stream<String>>, split every line in its separate String values
-          .map(numberStream -> numberStream.map(Integer::parseInt).collect(toUnmodifiableList()))
-          .collect(toUnmodifiableList()); // Results in List<List<Integer>>, the grid, by converting every single String into an Integer
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
+    return readProblemDataAndTransform("Problem11", lines ->
+        lines.map(line -> line.split(" "))
+            .map(Stream::of) // Results in Stream<Stream<String>>, split every line in its separate String values
+            .map(numberStream -> numberStream.map(Integer::parseInt).collect(toUnmodifiableList()))
+            .collect(toUnmodifiableList()) // Results in List<List<Integer>>, the grid, by converting every single String into an Integer
+    );
   }
 
   private void validateGrid(List<List<Integer>> grid) {
