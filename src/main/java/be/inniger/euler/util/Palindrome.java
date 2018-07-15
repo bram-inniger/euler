@@ -3,7 +3,7 @@ package be.inniger.euler.util;
 import java.util.List;
 
 public class Palindrome {
-  
+
   private Palindrome() {
     throw new IllegalStateException("Utility class constructor should never be called!");
   }

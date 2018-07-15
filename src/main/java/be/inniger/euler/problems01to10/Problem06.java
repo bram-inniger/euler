@@ -17,11 +17,9 @@ public class Problem06 {
   private static final int MAX_VALUE = 100;
 
   public int solve() {
-    int sum = IntStream.rangeClosed(1, MAX_VALUE).sum();
-    
-    int squareOfSums = sum * sum;
-    int sumOfSquares = IntStream.rangeClosed(1, MAX_VALUE).map(i -> i * i).sum();
+    var squareOfSums = IntStream.rangeClosed(1, MAX_VALUE).boxed().reduce(Integer::sum).map(i -> i * i).orElseThrow();
+    var sumOfSquares = IntStream.rangeClosed(1, MAX_VALUE).boxed().map(i -> i * i).reduce(Integer::sum).orElseThrow();
 
-    return squareOfSums- sumOfSquares;
+    return squareOfSums - sumOfSquares;
   }
 }

@@ -33,8 +33,7 @@ public class Problem05 {
         .stream()
         .map(factorsPerPrime -> factorsPerPrime.stream()
             .max(comparing(Factor::getFrequency))) // Per prime pick the factor with the highest frequency
-        .filter(Optional::isPresent) // Remove empty Optionals (there shouldn't be any)
-        .map(Optional::get)
+        .flatMap(Optional::stream)
         .map(factor -> pow(factor.prime, factor.frequency)) // Get the power of each prime factor back with its frequency
         .reduce(1, java.lang.Math::multiplyExact); // Make the product of all these powers to get the smallest number evenly divisible by all numbers
   }
@@ -46,9 +45,9 @@ public class Problem05 {
    */
   private int getFrequency(int number, int prime) {
     return IntStream.iterate(1, i -> i + 1)
-        .filter(i -> number % pow(prime, i + 1) != 0)
+        .dropWhile(i -> number % pow(prime, i + 1) == 0)
         .findFirst()
-        .orElseThrow(IllegalArgumentException::new);
+        .orElseThrow();
   }
 
   /**

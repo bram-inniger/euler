@@ -2,6 +2,8 @@ package be.inniger.euler.util;
 
 import org.junit.Test;
 
+import java.util.NoSuchElementException;
+
 import static be.inniger.euler.util.Math.pow;
 import static be.inniger.euler.util.Math.roundedSqrt;
 import static org.junit.Assert.assertEquals;
@@ -23,7 +25,7 @@ public class MathTest {
     assertEquals(12, roundedSqrt(145L));
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test(expected = NoSuchElementException.class)
   public void throwsOnTheSquareRootOfNegativeNumbersAsTheResultCannotBeRepresentedByAnInteger() {
     roundedSqrt(-1);
   }

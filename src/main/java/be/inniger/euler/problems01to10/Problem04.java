@@ -3,8 +3,7 @@ package be.inniger.euler.problems01to10;
 import java.util.stream.IntStream;
 
 import static be.inniger.euler.util.Palindrome.isPalindrome;
-import static java.util.Comparator.naturalOrder;
-import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toUnmodifiableList;
 
 /**
  * Largest palindrome product
@@ -19,28 +18,14 @@ public class Problem04 {
 
   public int solve() {
     return IntStream.rangeClosed(SMALLEST_N_DIGIT_NUMBER, BIGGEST_N_DIGIT_NUMBER)
-        .boxed()
-        .flatMap(left ->
-            IntStream.rangeClosed(SMALLEST_N_DIGIT_NUMBER, left)
-                .mapToObj(right -> new Pair(left, right)))
-        .map(pair -> pair.left * pair.right)
+        .flatMap(first -> IntStream.rangeClosed(SMALLEST_N_DIGIT_NUMBER, first)
+            .map(second -> first * second))
         .filter(number -> isPalindrome(
             String.valueOf(number)
                 .chars()
                 .boxed()
-                .collect(toList())))
-        .max(naturalOrder())
-        .orElseThrow(IllegalArgumentException::new);
-  }
-
-  private static class Pair {
-
-    private final int left;
-    private final int right;
-
-    private Pair(int left, int right) {
-      this.left = left;
-      this.right = right;
-    }
+                .collect(toUnmodifiableList())))
+        .max()
+        .orElseThrow();
   }
 }

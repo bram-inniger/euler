@@ -19,12 +19,11 @@ public class Problem09 {
     return IntStream.rangeClosed(1, TRIPLET_SUM)
         .boxed()
         .flatMap(a -> IntStream.rangeClosed(1, TRIPLET_SUM)
-            .boxed()
-            .map(b -> new PythagoreanTriplet(a, b, TRIPLET_SUM - a - b)))
+            .mapToObj(b -> new PythagoreanTriplet(a, b, TRIPLET_SUM - a - b)))
         .filter(PythagoreanTriplet::isValid)
-        .map(PythagoreanTriplet::getProduct)
+        .mapToInt(PythagoreanTriplet::getProduct)
         .findFirst()
-        .orElseThrow(IllegalArgumentException::new);
+        .orElseThrow();
   }
 
   private static class PythagoreanTriplet {

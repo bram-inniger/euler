@@ -3,7 +3,7 @@ package be.inniger.euler.problems01to10;
 import be.inniger.euler.util.EratosthenesSieve;
 
 import static be.inniger.euler.util.Math.roundedSqrt;
-import static java.util.Comparator.naturalOrder;
+import static be.inniger.euler.util.StreamUtil.reverseStream;
 
 /**
  * Largest prime factor
@@ -16,10 +16,9 @@ public class Problem03 {
   private static final long NUMBER = 600851475143L;
 
   public int solve() {
-    return new EratosthenesSieve(roundedSqrt(NUMBER)).getPrimes()
-        .stream()
+    return reverseStream(new EratosthenesSieve(roundedSqrt(NUMBER)).getPrimes())
         .filter(prime -> NUMBER % prime == 0L)
-        .max(naturalOrder())
-        .orElseThrow(IllegalArgumentException::new);
+        .findFirst()
+        .orElseThrow();
   }
 }

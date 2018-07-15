@@ -18,7 +18,7 @@ public class Math {
         .filter(root -> !isNaN(root))
         .map(java.lang.Math::round)
         .map(Long::intValue)
-        .orElseThrow(IllegalArgumentException::new);
+        .orElseThrow();
   }
 
   public static int pow(int base, int exponent) {

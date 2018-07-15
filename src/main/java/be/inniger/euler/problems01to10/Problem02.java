@@ -20,7 +20,7 @@ public class Problem02 {
       return evenSum;
     }
 
-    int current = prev + prevPrev;
+    var current = prev + prevPrev;
     return fib(current, prev, evenSum + (current % 2 == 0 ? current : 0));
   }
 }

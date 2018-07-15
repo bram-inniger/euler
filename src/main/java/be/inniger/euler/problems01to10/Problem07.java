@@ -34,11 +34,9 @@ public class Problem07 {
    * Showing that indeed the upper bound is reasonably guessed!
    */
   private int getSieveSize() {
-    return DoubleStream.iterate(10.0, n -> n * 1.1)
+    return (int) DoubleStream.iterate(10.0, n -> n * 1.1)
         .filter(n -> n / java.lang.Math.log(n) > PRIME_INDEX)
-        .boxed()
         .findFirst()
-        .map(Double::intValue)
-        .orElseThrow(IllegalArgumentException::new);
+        .orElseThrow();
   }
 }
