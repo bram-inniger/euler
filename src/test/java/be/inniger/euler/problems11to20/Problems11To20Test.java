@@ -4,10 +4,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class Problem11Test {
+public class Problems11To20Test {
 
   @Test
-  public void testSolve() {
+  public void testSolve11() {
     assertEquals(70600674, new Problem11().solve());
   }
 }

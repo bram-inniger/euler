@@ -20,7 +20,6 @@ Every time a test file accompanies the class containing the actual solution, and
 ## Clean-up TODO
 * Add java.lang.Math.* proxy methods in own Math class
 * Upgrade to JUnit 5
-* Bundle all tests into 1 class (per package?)
 * Solve more problems (or reclaim the old ones and polish them back up)
 
 ## License
