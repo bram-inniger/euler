@@ -1,8 +1,11 @@
 package be.inniger.euler.util;
 
+import be.inniger.euler.value.Factor;
+
 import java.util.Optional;
 import java.util.stream.IntStream;
 
+import static be.inniger.euler.value.Factor.createFactor;
 import static java.lang.Double.isNaN;
 
 public class Math {
@@ -33,5 +36,17 @@ public class Math {
     return IntStream.generate(() -> base)
         .limit(exponent)
         .reduce(1, java.lang.Math::multiplyExact);
+  }
+
+  public static Factor getFactor(int number, int prime) {
+    // Calculate how many times a given prime "fits" in a number, 
+    // the first time "nr times it fits + 1" is no fit, the answer is found!
+    var frequency = prime > number ?
+        0 :
+        IntStream.iterate(1, i -> i + 1)
+            .dropWhile(i -> number % pow(prime, i + 1) == 0)
+            .findFirst()
+            .orElseThrow();
+    return createFactor(prime, frequency);
   }
 }
