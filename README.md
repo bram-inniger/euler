@@ -3,9 +3,9 @@
 ## IMPORTANT
 
 This repo is in the process of being rewritten to much nicer functional/declarative code.
-Furthermore the goal will be to keep both this repository an its sister repo (euler-kotlin) in sync. // TODO add link
-Code written in 2018 is the new nicer one. Code written in 2016 probably does not reflect my current coding skill an practices.
-The 2016 code at the moment has been deleted but can easily be retrieved by going into the repo history. // TODO add link to older state
+Furthermore the goal will be to keep both this repository an its [sister repo (euler-kotlin)](https://github.com/bram-inniger/euler-kotlin) in sync.
+Code written in 2018 is the new nicer one. Code written in 2016 probably does not reflect my current coding skill and practices.
+The 2016 code at the moment has been deleted but can easily be retrieved by going into [the repo history](https://github.com/bram-inniger/euler/commit/7e027185176a542cdcad98da09008459e28f96fc).
 
 ## About
 
