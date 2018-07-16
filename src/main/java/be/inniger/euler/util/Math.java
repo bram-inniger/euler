@@ -2,16 +2,41 @@ package be.inniger.euler.util;
 
 import be.inniger.euler.value.Factor;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
 import static be.inniger.euler.value.Factor.createFactor;
 import static java.lang.Double.isNaN;
+import static java.lang.String.format;
+import static java.util.Arrays.fill;
+import static java.util.stream.Collectors.toUnmodifiableList;
 
-public class Math {
+public final class Math {
 
   private Math() {
     throw new IllegalStateException("Utility class constructor should never be called!");
+  }
+
+  public static List<Integer> getPrimesUpUntil(int number) {
+    if (number < 2) {
+      throw new IllegalArgumentException(format("Size %d contains no primes! ", number));
+    }
+
+    final var sieve = new Boolean[number + 1];
+    fill(sieve, true);
+    sieve[0] = false;
+    sieve[1] = false;
+
+    IntStream.rangeClosed(2, roundedSqrt(number))
+        .filter(i -> sieve[i])
+        .flatMap(i -> IntStream.iterate(i * i, j -> j < sieve.length, j -> j + i))
+        .forEach(j -> sieve[j] = false);
+
+    return IntStream.range(0, sieve.length)
+        .filter(i -> sieve[i])
+        .boxed()
+        .collect(toUnmodifiableList());
   }
 
   public static int roundedSqrt(Number number) {

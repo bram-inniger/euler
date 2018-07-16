@@ -1,7 +1,6 @@
 package be.inniger.euler.problems01to10;
 
-import be.inniger.euler.util.EratosthenesSieve;
-
+import static be.inniger.euler.util.Math.getPrimesUpUntil;
 import static be.inniger.euler.util.Math.roundedSqrt;
 import static be.inniger.euler.util.StreamUtil.reverseStream;
 
@@ -16,7 +15,7 @@ public class Problem03 {
   private static final long NUMBER = 600851475143L;
 
   public int solve() {
-    return reverseStream(new EratosthenesSieve(roundedSqrt(NUMBER)).getPrimes())
+    return reverseStream(getPrimesUpUntil(roundedSqrt(NUMBER)))
         .filter(prime -> NUMBER % prime == 0L)
         .findFirst()
         .orElseThrow();

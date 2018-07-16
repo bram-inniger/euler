@@ -1,13 +1,11 @@
 package be.inniger.euler.problems01to10;
 
-import be.inniger.euler.util.EratosthenesSieve;
 import be.inniger.euler.value.Factor;
 
 import java.util.Optional;
 import java.util.stream.IntStream;
 
-import static be.inniger.euler.util.Math.getFactor;
-import static be.inniger.euler.util.Math.pow;
+import static be.inniger.euler.util.Math.*;
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.groupingBy;
 
@@ -22,7 +20,7 @@ public class Problem05 {
   private static final int MAX_VALUE = 20;
 
   public int solve() {
-    var primes = new EratosthenesSieve(MAX_VALUE).getPrimes();
+    var primes = getPrimesUpUntil(MAX_VALUE);
 
     return IntStream.rangeClosed(1, MAX_VALUE) // Iterate over all numbers from 1 to 20
         .boxed()

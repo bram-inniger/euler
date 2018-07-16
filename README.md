@@ -18,11 +18,7 @@ Each and every problem has its own class file containing the code how to solve i
 Every time a test file accompanies the class containing the actual solution, and validating the code.
 
 ## Clean-up TODO
-* Extract proper value classes in a value-package, link this doc: https://docs.oracle.com/javase/8/docs/api/java/lang/doc-files/ValueBased.html
-* Clean up the util classes, maybe also add note on what makes a util class
-* Extract code duplication (Factor, getFrequency) + tests
 * Add java.lang.Math.* proxy methods in own Math class
-* Move EratosthenesSieve into Math, hiding away the details behind a static "getPrimesUpUntil(int)" method
 * Upgrade to JUnit 5
 * Bundle all tests into 1 class (per package?)
 * Solve more problems (or reclaim the old ones and polish them back up)

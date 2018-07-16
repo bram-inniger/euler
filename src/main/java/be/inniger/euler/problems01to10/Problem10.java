@@ -1,6 +1,6 @@
 package be.inniger.euler.problems01to10;
 
-import be.inniger.euler.util.EratosthenesSieve;
+import static be.inniger.euler.util.Math.getPrimesUpUntil;
 
 /**
  * Summation of primes
@@ -13,7 +13,7 @@ public class Problem10 {
   private static final int MAX_VALUE = 2_000_000;
 
   public long solve() {
-    return new EratosthenesSieve(MAX_VALUE).getPrimes()
+    return getPrimesUpUntil(MAX_VALUE)
         .stream()
         .map(Integer::longValue)
         .reduce(0L, Long::sum);

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class StreamUtil {
+public final class StreamUtil {
 
   private StreamUtil() {
     throw new IllegalStateException("Utility class constructor should never be called!");

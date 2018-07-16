@@ -4,12 +4,29 @@ import org.junit.Test;
 
 import java.util.NoSuchElementException;
 
-import static be.inniger.euler.util.Math.getFactor;
-import static be.inniger.euler.util.Math.pow;
-import static be.inniger.euler.util.Math.roundedSqrt;
+import static be.inniger.euler.util.Math.*;
+import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 import static org.junit.Assert.assertEquals;
 
 public class MathTest {
+
+  @Test
+  public void canGetPrimes() {
+    assertEquals(singletonList(2), getPrimesUpUntil(2));
+    assertEquals(asList(2, 3, 5), getPrimesUpUntil(5));
+    assertEquals(asList(2, 3, 5, 7, 11, 13, 17, 19), getPrimesUpUntil(19));
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void throwsOnUpUntilNumberTooSmallToContainPrimes() {
+    getPrimesUpUntil(1);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void throwsOnNegativeUpUntilNumber() {
+    getPrimesUpUntil(-1);
+  }
 
   @Test
   public void canCalculateTheSquareRoot() {
