@@ -1,5 +1,6 @@
 package be.inniger.euler.problems01to10;
 
+import be.inniger.euler.util.Math;
 import be.inniger.euler.value.Factor;
 
 import java.util.Optional;
@@ -34,6 +35,6 @@ public class Problem05 {
             .max(comparing(Factor::getFrequency))) // Per prime pick the factor with the highest frequency
         .flatMap(Optional::stream)
         .map(factor -> pow(factor.getPrime(), factor.getFrequency())) // Get the power of each prime factor back with its frequency
-        .reduce(1, java.lang.Math::multiplyExact); // Make the product of all these powers to get the smallest number evenly divisible by all numbers
+        .reduce(1, Math::multiply); // Make the product of all these powers to get the smallest number evenly divisible by all numbers
   }
 }

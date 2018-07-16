@@ -1,5 +1,7 @@
 package be.inniger.euler.problems01to10;
 
+import be.inniger.euler.util.Math;
+
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -23,7 +25,7 @@ public class Problem08 {
         .map(beginIndex -> number.subList(beginIndex, beginIndex + NR_ADJACENT_DIGITS))
         .mapToLong(digits -> digits.stream()
             .map(Integer::longValue)
-            .reduce(1L, java.lang.Math::multiplyExact))
+            .reduce(1L, Math::multiply))
         .max()
         .orElseThrow();
   }

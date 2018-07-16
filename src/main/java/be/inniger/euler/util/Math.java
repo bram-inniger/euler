@@ -60,7 +60,7 @@ public final class Math {
 
     return IntStream.generate(() -> base)
         .limit(exponent)
-        .reduce(1, java.lang.Math::multiplyExact);
+        .reduce(1, Math::multiply);
   }
 
   public static Factor getFactor(int number, int prime) {
@@ -73,5 +73,13 @@ public final class Math {
             .findFirst()
             .orElseThrow();
     return createFactor(prime, frequency);
+  }
+
+  public static int multiply(int x, int y) {
+    return java.lang.Math.multiplyExact(x, y);
+  }
+
+  public static long multiply(long x, long y) {
+    return java.lang.Math.multiplyExact(x, y);
   }
 }

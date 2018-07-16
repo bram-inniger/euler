@@ -18,11 +18,13 @@ public class MathTest {
     assertEquals(asList(2, 3, 5, 7, 11, 13, 17, 19), getPrimesUpUntil(19));
   }
 
+  @SuppressWarnings("ResultOfMethodCallIgnored")
   @Test(expected = IllegalArgumentException.class)
   public void throwsOnUpUntilNumberTooSmallToContainPrimes() {
     getPrimesUpUntil(1);
   }
 
+  @SuppressWarnings("ResultOfMethodCallIgnored")
   @Test(expected = IllegalArgumentException.class)
   public void throwsOnNegativeUpUntilNumber() {
     getPrimesUpUntil(-1);
@@ -43,6 +45,7 @@ public class MathTest {
     assertEquals(12, roundedSqrt(145L));
   }
 
+  @SuppressWarnings("ResultOfMethodCallIgnored")
   @Test(expected = NoSuchElementException.class)
   public void throwsOnTheSquareRootOfNegativeNumbersAsTheResultCannotBeRepresentedByAnInteger() {
     roundedSqrt(-1);
@@ -68,11 +71,13 @@ public class MathTest {
     assertEquals(-8, pow(-2, 3));
   }
 
+  @SuppressWarnings("ResultOfMethodCallIgnored")
   @Test(expected = IllegalArgumentException.class)
   public void throwsOnTheUndefinedCaseWhereBothBaseandExponentAreZero() {
     pow(0, 0);
   }
 
+  @SuppressWarnings("ResultOfMethodCallIgnored")
   @Test(expected = IllegalArgumentException.class)
   public void throwsOnTheInvalidCaseWhereTheExponentIsNegativeAsTheResultCannotBeRepresentedByAnInteger() {
     pow(2, -1);
@@ -87,5 +92,39 @@ public class MathTest {
     assertEquals("Factor{prime=2, frequency=3}", getFactor(8, 2).toString());
     assertEquals("Factor{prime=2, frequency=2}", getFactor(12, 2).toString());
     assertEquals("Factor{prime=5, frequency=2}", getFactor(100, 5).toString());
+  }
+
+  @Test
+  public void canMultiplyInts() {
+    assertEquals(1, multiply(1, 1));
+    assertEquals(-1, multiply(-1, 1));
+    assertEquals(-1, multiply(1, -1));
+    assertEquals(1, multiply(-1, -1));
+    assertEquals(2, multiply(1, 2));
+    assertEquals(2, multiply(2, 1));
+    assertEquals(4, multiply(2, 2));
+  }
+
+  @SuppressWarnings("ResultOfMethodCallIgnored")
+  @Test(expected = ArithmeticException.class)
+  public void throwsOnOverflowForInts() {
+    multiply(Integer.MAX_VALUE, 2);
+  }
+
+  @Test
+  public void canMultiplyLongs() {
+    assertEquals(1L, multiply(1L, 1L));
+    assertEquals(-1L, multiply(-1L, 1L));
+    assertEquals(-1L, multiply(1L, -1L));
+    assertEquals(1L, multiply(-1L, -1L));
+    assertEquals(2L, multiply(1L, 2L));
+    assertEquals(2L, multiply(2L, 1L));
+    assertEquals(4L, multiply(2L, 2L));
+  }
+
+  @SuppressWarnings("ResultOfMethodCallIgnored")
+  @Test(expected = ArithmeticException.class)
+  public void throwsOnOverflowForLongs() {
+    multiply(Long.MAX_VALUE, 2L);
   }
 }
