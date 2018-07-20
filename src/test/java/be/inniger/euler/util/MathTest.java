@@ -1,6 +1,6 @@
 package be.inniger.euler.util;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -15,7 +15,8 @@ import static be.inniger.euler.util.Math.roundedSqrt;
 import static be.inniger.euler.util.Math.square;
 import static be.inniger.euler.util.Math.sum;
 import static be.inniger.euler.util.Math.toInt;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MathTest {
 
@@ -27,15 +28,17 @@ public class MathTest {
   }
 
   @SuppressWarnings("ResultOfMethodCallIgnored")
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void throwsOnUpUntilNumberTooSmallToContainPrimes() {
-    getPrimesUpUntil(1);
+    assertThrows(IllegalArgumentException.class,
+        () -> getPrimesUpUntil(1));
   }
 
   @SuppressWarnings("ResultOfMethodCallIgnored")
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void throwsOnNegativeUpUntilNumber() {
-    getPrimesUpUntil(-1);
+    assertThrows(IllegalArgumentException.class,
+        () -> getPrimesUpUntil(-1));
   }
 
   @Test
@@ -54,9 +57,10 @@ public class MathTest {
   }
 
   @SuppressWarnings("ResultOfMethodCallIgnored")
-  @Test(expected = NoSuchElementException.class)
+  @Test
   public void throwsOnTheSquareRootOfNegativeNumbersAsTheResultCannotBeRepresentedByAnInteger() {
-    roundedSqrt(-1);
+    assertThrows(NoSuchElementException.class,
+        () -> roundedSqrt(-1));
   }
 
   @Test
@@ -80,15 +84,17 @@ public class MathTest {
   }
 
   @SuppressWarnings("ResultOfMethodCallIgnored")
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void throwsOnTheUndefinedCaseWhereBothBaseandExponentAreZero() {
-    pow(0, 0);
+    assertThrows(IllegalArgumentException.class,
+        () -> pow(0, 0));
   }
 
   @SuppressWarnings("ResultOfMethodCallIgnored")
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void throwsOnTheInvalidCaseWhereTheExponentIsNegativeAsTheResultCannotBeRepresentedByAnInteger() {
-    pow(2, -1);
+    assertThrows(IllegalArgumentException.class,
+        () -> pow(2, -1));
   }
 
   @Test
@@ -148,9 +154,10 @@ public class MathTest {
   }
 
   @SuppressWarnings("ResultOfMethodCallIgnored")
-  @Test(expected = ArithmeticException.class)
+  @Test
   public void throwsOnOverflowForInts() {
-    multiply(Integer.MAX_VALUE, 2);
+    assertThrows(ArithmeticException.class,
+        () -> multiply(Integer.MAX_VALUE, 2));
   }
 
   @Test
@@ -166,9 +173,10 @@ public class MathTest {
   }
 
   @SuppressWarnings("ResultOfMethodCallIgnored")
-  @Test(expected = ArithmeticException.class)
+  @Test
   public void throwsOnOverflowForLongs() {
-    multiply(Long.MAX_VALUE, 2L);
+    assertThrows(ArithmeticException.class,
+        () -> multiply(Long.MAX_VALUE, 2L));
   }
 
   @Test
@@ -189,12 +197,12 @@ public class MathTest {
 
   @Test
   public void canCalculateLog() {
-    assertEquals(Double.NEGATIVE_INFINITY, log(0), 0d);
-    assertEquals(0, log(1), 0d);
+    assertEquals(Double.NEGATIVE_INFINITY, log(0), Double.MIN_NORMAL);
+    assertEquals(0, log(1), Double.MIN_NORMAL);
     assertEquals(1, log(E), 0.0001d);
-    assertEquals(Double.POSITIVE_INFINITY, log(Double.POSITIVE_INFINITY), 0d);
-    assertEquals(Double.NaN, log(Double.NEGATIVE_INFINITY), 0d);
-    assertEquals(Double.NaN, log(Double.NaN), 0d);
+    assertEquals(Double.POSITIVE_INFINITY, log(Double.POSITIVE_INFINITY), Double.MIN_NORMAL);
+    assertEquals(Double.NaN, log(Double.NEGATIVE_INFINITY), Double.MIN_NORMAL);
+    assertEquals(Double.NaN, log(Double.NaN), Double.MIN_NORMAL);
   }
 
   @Test

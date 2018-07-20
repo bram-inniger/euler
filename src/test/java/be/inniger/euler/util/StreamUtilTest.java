@@ -1,6 +1,6 @@
 package be.inniger.euler.util;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import static be.inniger.euler.util.StreamUtil.readProblemDataAndTransform;
 import static be.inniger.euler.util.StreamUtil.reverseStream;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toUnmodifiableList;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StreamUtilTest {
 

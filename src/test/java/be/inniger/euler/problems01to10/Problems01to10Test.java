@@ -1,8 +1,8 @@
 package be.inniger.euler.problems01to10;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Problems01to10Test {
 

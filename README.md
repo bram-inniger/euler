@@ -10,7 +10,7 @@ The 2016 code at the moment has been deleted but can easily be retrieved by goin
 ## About
 
 A place for me to conveniently story my Project Euler solutions.
-Serves also to further practice git, java 8, maven...
+Serves also to further practice git, java 11, maven...
 
 ## How to read
 
@@ -18,8 +18,7 @@ Each and every problem has its own class file containing the code how to solve i
 Every time a test file accompanies the class containing the actual solution, and validating the code.
 
 ## TODO
-* Upgrade to JUnit 5
-* Solve more problems (or reclaim the old ones and polish them back up)
+Solve more problems (or reclaim the old ones and polish them back up)
 
 ## License
 
