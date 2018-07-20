@@ -12,8 +12,9 @@ import static java.lang.String.format;
 import static java.util.Arrays.fill;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
-// TODO Test untested methods
 public final class Math {
+  
+  public static final Double E = java.lang.Math.E;
 
   private Math() {
     throw new IllegalStateException("Utility class constructor should never be called!");

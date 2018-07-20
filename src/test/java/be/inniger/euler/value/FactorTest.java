@@ -27,7 +27,7 @@ public class FactorTest {
   public void twoFactorsHaveEqualToString() {
     assertEquals(createFactor(7, 8).toString(), createFactor(7, 8).toString());
   }
-  
+
   @Test
   public void differentFactorsAreNotEqual() {
     assertNotEquals(createFactor(9, 10), createFactor(10, 9));

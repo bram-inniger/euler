@@ -17,8 +17,7 @@ Serves also to further practice git, java 8, maven...
 Each and every problem has its own class file containing the code how to solve it.
 Every time a test file accompanies the class containing the actual solution, and validating the code.
 
-## Clean-up TODO
-* Add java.lang.Math.* proxy methods in own Math class
+## TODO
 * Upgrade to JUnit 5
 * Solve more problems (or reclaim the old ones and polish them back up)
 
