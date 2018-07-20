@@ -1,6 +1,6 @@
 /**
  * Utility classes used in this project.
- *
+ * <p>
  * A utility class:
  * - is final so it cannot be extended;
  * - has no state whatsoever;

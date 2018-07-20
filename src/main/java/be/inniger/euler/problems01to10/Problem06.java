@@ -1,5 +1,7 @@
 package be.inniger.euler.problems01to10;
 
+import be.inniger.euler.util.Math;
+
 import java.util.stream.IntStream;
 
 /**
@@ -17,8 +19,8 @@ public class Problem06 {
   private static final int MAX_VALUE = 100;
 
   public int solve() {
-    var squareOfSums = IntStream.rangeClosed(1, MAX_VALUE).boxed().reduce(Integer::sum).map(i -> i * i).orElseThrow();
-    var sumOfSquares = IntStream.rangeClosed(1, MAX_VALUE).boxed().map(i -> i * i).reduce(Integer::sum).orElseThrow();
+    var squareOfSums = IntStream.rangeClosed(1, MAX_VALUE).boxed().reduce(Math::sum).map(Math::square).orElseThrow();
+    var sumOfSquares = IntStream.rangeClosed(1, MAX_VALUE).boxed().map(Math::square).reduce(Math::sum).orElseThrow();
 
     return squareOfSums - sumOfSquares;
   }

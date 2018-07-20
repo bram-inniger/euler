@@ -1,5 +1,7 @@
 package be.inniger.euler.problems11to20;
 
+import be.inniger.euler.util.Math;
+
 import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -110,7 +112,7 @@ public class Problem11 {
     private int product() {
       return line.stream()
           .map(coordinate -> grid.get(coordinate.y).get(coordinate.x))
-          .reduce((acc, factor) -> acc * factor)
+          .reduce(Math::multiply)
           .orElseThrow();
     }
   }

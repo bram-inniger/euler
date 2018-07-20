@@ -1,6 +1,6 @@
 /**
  * Value classes used in this project.
- * 
+ * <p>
  * Instances of a value-based class:
  * - are final and immutable (though may contain references to mutable objects);
  * - have implementations of equals, hashCode, and toString which are computed solely from the instance's state and not from its identity or the state of any other object or variable;

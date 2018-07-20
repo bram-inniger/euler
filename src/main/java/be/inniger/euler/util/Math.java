@@ -12,6 +12,7 @@ import static java.lang.String.format;
 import static java.util.Arrays.fill;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
+// TODO Test untested methods
 public final class Math {
 
   private Math() {
@@ -75,11 +76,39 @@ public final class Math {
     return createFactor(prime, frequency);
   }
 
+  public static int sum(int x, int y) {
+    return Integer.sum(x, y);
+  }
+
+  public static long sum(long x, long y) {
+    return Long.sum(x, y);
+  }
+
   public static int multiply(int x, int y) {
     return java.lang.Math.multiplyExact(x, y);
   }
 
   public static long multiply(long x, long y) {
     return java.lang.Math.multiplyExact(x, y);
+  }
+
+  public static int square(int number) {
+    return java.lang.Math.multiplyExact(number, number);
+  }
+
+  public static long square(long number) {
+    return java.lang.Math.multiplyExact(number, number);
+  }
+
+  public static double log(double number) {
+    return java.lang.Math.log(number);
+  }
+
+  public static int toInt(Number number) {
+    return number.intValue();
+  }
+
+  public static long toLong(Number number) {
+    return number.longValue();
   }
 }

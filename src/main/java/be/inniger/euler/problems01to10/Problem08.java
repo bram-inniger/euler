@@ -24,7 +24,7 @@ public class Problem08 {
         .boxed()
         .map(beginIndex -> number.subList(beginIndex, beginIndex + NR_ADJACENT_DIGITS))
         .mapToLong(digits -> digits.stream()
-            .map(Integer::longValue)
+            .map(Math::toLong)
             .reduce(1L, Math::multiply))
         .max()
         .orElseThrow();

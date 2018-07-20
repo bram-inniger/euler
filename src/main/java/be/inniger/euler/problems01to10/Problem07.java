@@ -1,8 +1,9 @@
 package be.inniger.euler.problems01to10;
 
-import be.inniger.euler.util.Math;
-
 import java.util.stream.DoubleStream;
+
+import static be.inniger.euler.util.Math.getPrimesUpUntil;
+import static be.inniger.euler.util.Math.log;
 
 /**
  * 10001st prime
@@ -16,7 +17,7 @@ public class Problem07 {
   private static final int PRIME_INDEX = 10_001 - 1;
 
   public int solve() {
-    return Math.getPrimesUpUntil(getUpperBound()).get(PRIME_INDEX);
+    return getPrimesUpUntil(getUpperBound()).get(PRIME_INDEX);
   }
 
   /**
@@ -34,10 +35,8 @@ public class Problem07 {
    * Showing that indeed the upper bound is reasonably guessed!
    */
   private int getUpperBound() {
-    return DoubleStream.iterate(10.0, n -> n * 1.1)
-        .filter(n -> n / java.lang.Math.log(n) > PRIME_INDEX)
-        .boxed()
-        .map(Double::intValue)
+    return (int) DoubleStream.iterate(10.0, n -> n * 1.1)
+        .dropWhile(n -> n / log(n) < PRIME_INDEX)
         .findFirst()
         .orElseThrow();
   }

@@ -6,7 +6,9 @@ import be.inniger.euler.value.Factor;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
-import static be.inniger.euler.util.Math.*;
+import static be.inniger.euler.util.Math.getFactor;
+import static be.inniger.euler.util.Math.getPrimesUpUntil;
+import static be.inniger.euler.util.Math.pow;
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.groupingBy;
 

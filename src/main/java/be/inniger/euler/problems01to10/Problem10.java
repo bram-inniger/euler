@@ -1,5 +1,7 @@
 package be.inniger.euler.problems01to10;
 
+import be.inniger.euler.util.Math;
+
 import static be.inniger.euler.util.Math.getPrimesUpUntil;
 
 /**
@@ -15,7 +17,7 @@ public class Problem10 {
   public long solve() {
     return getPrimesUpUntil(MAX_VALUE)
         .stream()
-        .map(Integer::longValue)
-        .reduce(0L, Long::sum);
+        .map(Math::toLong)
+        .reduce(0L, Math::sum);
   }
 }
