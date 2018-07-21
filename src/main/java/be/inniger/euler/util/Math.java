@@ -13,7 +13,7 @@ import static java.util.Arrays.fill;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
 public final class Math {
-  
+
   public static final Double E = java.lang.Math.E;
 
   private Math() {
@@ -70,12 +70,17 @@ public final class Math {
     // the first time "nr times it fits + 1" is no fit, the answer is found!
     var frequency = prime > number ?
         0 :
-        IntStream.iterate(1, i -> i + 1)
+        IntStream.iterate(1, Math::inc)
             .dropWhile(i -> number % pow(prime, i + 1) == 0)
             .findFirst()
             .orElseThrow();
     return createFactor(prime, frequency);
   }
+
+  /*
+   * Proxy methods to official JDK methods or trivial self-written methods
+   * Testing is unneeded for any of these
+   */
 
   public static int sum(int x, int y) {
     return Integer.sum(x, y);
@@ -111,5 +116,37 @@ public final class Math {
 
   public static long toLong(Number number) {
     return number.longValue();
+  }
+
+  public static int inc(int number) {
+    return java.lang.Math.incrementExact(number);
+  }
+
+  public static long inc(long number) {
+    return java.lang.Math.incrementExact(number);
+  }
+
+  public static int dec(int number) {
+    return java.lang.Math.decrementExact(number);
+  }
+
+  public static long dec(long number) {
+    return java.lang.Math.decrementExact(number);
+  }
+
+  public static boolean isStrictlyPositive(int number) {
+    return number >= 0;
+  }
+
+  public static boolean isPositive(int number) {
+    return number > 0;
+  }
+
+  public static boolean isStrictlyPositive(long number) {
+    return number >= 0L;
+  }
+
+  public static boolean isPositive(long number) {
+    return number > 0L;
   }
 }

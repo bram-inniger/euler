@@ -10,4 +10,9 @@ public class Problems11To20Test {
   public void testSolve11() {
     assertEquals(70600674, new Problem11().solve());
   }
+
+  @Test
+  public void testSolve12() {
+    assertEquals(76576500, new Problem12().solve());
+  }
 }

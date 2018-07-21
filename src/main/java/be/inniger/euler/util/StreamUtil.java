@@ -14,7 +14,7 @@ public final class StreamUtil {
   }
 
   public static <T> Stream<T> reverseStream(List<T> list) {
-    return IntStream.iterate(list.size() - 1, i -> i >= 0, i -> i - 1)
+    return IntStream.iterate(list.size() - 1, Math::isStrictlyPositive, Math::dec)
         .mapToObj(list::get);
   }
 
