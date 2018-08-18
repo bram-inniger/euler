@@ -96,6 +96,7 @@ public class MathTest {
     assertEquals("Factor{prime=2, frequency=0}", getFactor(1, 2).toString());
     assertEquals("Factor{prime=2, frequency=1}", getFactor(2, 2).toString());
     assertEquals("Factor{prime=2, frequency=2}", getFactor(4, 2).toString());
+    assertEquals("Factor{prime=2, frequency=0}", getFactor(5, 2).toString());
     assertEquals("Factor{prime=2, frequency=1}", getFactor(6, 2).toString());
     assertEquals("Factor{prime=2, frequency=3}", getFactor(8, 2).toString());
     assertEquals("Factor{prime=2, frequency=2}", getFactor(12, 2).toString());

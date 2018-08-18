@@ -46,7 +46,6 @@ public class Problem12 {
 
     return StreamSupport.stream(primes.spliterator(), false)
         .takeWhile(prime -> prime <= biggestPotentialPrimeDivisor)
-        .filter(prime -> number % prime == 0)
         .map(prime -> Math.getFactor(number, prime))
         .mapToInt(Factor::getFrequency)
         .map(Math::inc)
