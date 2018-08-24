@@ -1,7 +1,5 @@
 package be.inniger.euler.problems11to20;
 
-import be.inniger.euler.util.Math;
-
 import java.math.BigInteger;
 
 /**
@@ -18,8 +16,7 @@ public class Problem16 {
     return BigInteger.TWO.pow(EXPONENT)
         .toString()
         .chars()
-        .mapToObj(Character::getNumericValue)
-        .reduce(Math::sum)
-        .orElseThrow();
+        .map(Character::getNumericValue)
+        .sum();
   }
 }
