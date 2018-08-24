@@ -21,8 +21,7 @@ public class Problem08 {
 
   public long solve() {
     return IntStream.rangeClosed(0, number.size() - NR_ADJACENT_DIGITS)
-        .boxed()
-        .map(beginIndex -> number.subList(beginIndex, beginIndex + NR_ADJACENT_DIGITS))
+        .mapToObj(beginIndex -> number.subList(beginIndex, beginIndex + NR_ADJACENT_DIGITS))
         .mapToLong(digits -> digits.stream()
             .map(Math::toLong)
             .reduce(1L, Math::multiply))
@@ -33,8 +32,7 @@ public class Problem08 {
   private List<Integer> readNumber() {
     return readProblemDataAndTransform("Problem08", lines ->
         lines.flatMap(line -> line.chars()
-            .boxed()
-            .map(Character::getNumericValue))
+            .mapToObj(Character::getNumericValue))
             .collect(toUnmodifiableList()));
   }
 }
