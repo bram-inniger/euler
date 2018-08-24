@@ -2,6 +2,7 @@ package be.inniger.euler.util;
 
 import be.inniger.euler.value.Factor;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -75,6 +76,14 @@ public final class Math {
             .findFirst()
             .orElseThrow();
     return createFactor(prime, frequency);
+  }
+
+  // TODO test and deal with input validation
+  public static BigInteger factorial(int number) {
+    return IntStream.iterate(number, Math::isPositive, Math::dec)
+        .mapToObj(BigInteger::valueOf)
+        .reduce(BigInteger::multiply)
+        .orElseThrow();
   }
 
   /*
