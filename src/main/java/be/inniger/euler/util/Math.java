@@ -15,8 +15,6 @@ import static java.util.stream.Collectors.toUnmodifiableList;
 
 public final class Math {
 
-  public static final Double E = java.lang.Math.E;
-
   private Math() {
     throw new IllegalStateException("Utility class constructor should never be called!");
   }
@@ -57,7 +55,7 @@ public final class Math {
       throw new IllegalArgumentException("Base and exponent cannot both be 0, this is undefined");
     }
 
-    if (exponent < 0) {
+    if (isNegative(exponent)) {
       throw new IllegalArgumentException("Negative exponents lead to results that cannot be assigned to Int");
     }
 
@@ -78,8 +76,16 @@ public final class Math {
     return createFactor(prime, frequency);
   }
 
-  // TODO test and deal with input validation
   public static BigInteger factorial(int number) {
+    if (isNegative(number)) {
+      throw new IllegalArgumentException(format("Cannot calculate the factorial of a negative number: %d", number));
+    }
+
+    // By convention
+    if (number == 0 || number == 1) {
+      return BigInteger.ONE;
+    }
+
     return IntStream.iterate(number, Math::isPositive, Math::dec)
         .mapToObj(BigInteger::valueOf)
         .reduce(BigInteger::multiply)
@@ -151,11 +157,19 @@ public final class Math {
     return number > 0;
   }
 
+  public static boolean isNegative(int number) {
+    return !isStrictlyPositive(number);
+  }
+
   public static boolean isStrictlyPositive(long number) {
     return number >= 0L;
   }
 
   public static boolean isPositive(long number) {
     return number > 0L;
+  }
+
+  public static boolean isNegative(long number) {
+    return !isStrictlyPositive(number);
   }
 }

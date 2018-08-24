@@ -2,9 +2,11 @@ package be.inniger.euler.util;
 
 import org.junit.jupiter.api.Test;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import static be.inniger.euler.util.Math.factorial;
 import static be.inniger.euler.util.Math.getFactor;
 import static be.inniger.euler.util.Math.getPrimesUpUntil;
 import static be.inniger.euler.util.Math.pow;
@@ -21,14 +23,12 @@ public class MathTest {
     assertEquals(List.of(2, 3, 5, 7, 11, 13, 17, 19), getPrimesUpUntil(19));
   }
 
-  @SuppressWarnings("ResultOfMethodCallIgnored")
   @Test
   public void throwsOnUpUntilNumberTooSmallToContainPrimes() {
     assertThrows(IllegalArgumentException.class,
         () -> getPrimesUpUntil(1));
   }
 
-  @SuppressWarnings("ResultOfMethodCallIgnored")
   @Test
   public void throwsOnNegativeUpUntilNumber() {
     assertThrows(IllegalArgumentException.class,
@@ -50,7 +50,6 @@ public class MathTest {
     assertEquals(12, roundedSqrt(145L));
   }
 
-  @SuppressWarnings("ResultOfMethodCallIgnored")
   @Test
   public void throwsOnTheSquareRootOfNegativeNumbersAsTheResultCannotBeRepresentedByAnInteger() {
     assertThrows(NoSuchElementException.class,
@@ -77,14 +76,12 @@ public class MathTest {
     assertEquals(-8, pow(-2, 3));
   }
 
-  @SuppressWarnings("ResultOfMethodCallIgnored")
   @Test
-  public void throwsOnTheUndefinedCaseWhereBothBaseandExponentAreZero() {
+  public void throwsOnTheUndefinedCaseWhereBothBaseAndExponentAreZero() {
     assertThrows(IllegalArgumentException.class,
         () -> pow(0, 0));
   }
 
-  @SuppressWarnings("ResultOfMethodCallIgnored")
   @Test
   public void throwsOnTheInvalidCaseWhereTheExponentIsNegativeAsTheResultCannotBeRepresentedByAnInteger() {
     assertThrows(IllegalArgumentException.class,
@@ -101,5 +98,22 @@ public class MathTest {
     assertEquals("Factor{prime=2, frequency=3}", getFactor(8, 2).toString());
     assertEquals("Factor{prime=2, frequency=2}", getFactor(12, 2).toString());
     assertEquals("Factor{prime=5, frequency=2}", getFactor(100, 5).toString());
+  }
+
+  @Test
+  public void canCalculateFactorial() {
+    assertEquals(new BigInteger("1"), factorial(0));
+    assertEquals(new BigInteger("1"), factorial(1));
+    assertEquals(new BigInteger("2"), factorial(2));
+    assertEquals(new BigInteger("6"), factorial(3));
+
+    // Verified by https://www.wolframalpha.com/input/?i=100!
+    assertEquals(new BigInteger("93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864000000000000000000000000"), factorial(100));
+  }
+
+  @Test
+  public void throwsOnTheInvalidCaseWhereTheNegativeFactorialIsCalculated() {
+    assertThrows(IllegalArgumentException.class,
+        () -> factorial(-1));
   }
 }
