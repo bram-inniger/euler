@@ -1,13 +1,10 @@
 package be.inniger.euler.util;
 
-import be.inniger.euler.value.Factor;
-
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
-import static be.inniger.euler.value.Factor.createFactor;
 import static java.lang.Double.isNaN;
 import static java.lang.String.format;
 import static java.util.Arrays.fill;
@@ -62,18 +59,6 @@ public final class Math {
     return IntStream.generate(() -> base)
         .limit(exponent)
         .reduce(1, Math::multiply);
-  }
-
-  public static Factor getFactor(int number, int prime) {
-    // Calculate how many times a given prime "fits" in a number, 
-    // the first time "nr times it fits + 1" is no fit, the answer is found!
-    var frequency = prime > number || number % prime != 0 ?
-        0 :
-        IntStream.iterate(1, Math::inc)
-            .dropWhile(i -> number % pow(prime, i + 1) == 0)
-            .findFirst()
-            .orElseThrow();
-    return createFactor(prime, frequency);
   }
 
   public static BigInteger factorial(int number) {
@@ -171,5 +156,13 @@ public final class Math {
 
   public static boolean isNegative(long number) {
     return !isStrictlyPositive(number);
+  }
+
+  public static int abs(int number) {
+    return java.lang.Math.abs(number);
+  }
+
+  public static long abs(long number) {
+    return java.lang.Math.abs(number);
   }
 }

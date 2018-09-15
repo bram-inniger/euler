@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import static be.inniger.euler.util.Math.factorial;
-import static be.inniger.euler.util.Math.getFactor;
 import static be.inniger.euler.util.Math.getPrimesUpUntil;
 import static be.inniger.euler.util.Math.pow;
 import static be.inniger.euler.util.Math.roundedSqrt;
@@ -86,18 +85,6 @@ public class MathTest {
   public void throwsOnTheInvalidCaseWhereTheExponentIsNegativeAsTheResultCannotBeRepresentedByAnInteger() {
     assertThrows(IllegalArgumentException.class,
         () -> pow(2, -1));
-  }
-
-  @Test
-  public void canGetFactor() {
-    assertEquals("Factor{prime=2, frequency=0}", getFactor(1, 2).toString());
-    assertEquals("Factor{prime=2, frequency=1}", getFactor(2, 2).toString());
-    assertEquals("Factor{prime=2, frequency=2}", getFactor(4, 2).toString());
-    assertEquals("Factor{prime=2, frequency=0}", getFactor(5, 2).toString());
-    assertEquals("Factor{prime=2, frequency=1}", getFactor(6, 2).toString());
-    assertEquals("Factor{prime=2, frequency=3}", getFactor(8, 2).toString());
-    assertEquals("Factor{prime=2, frequency=2}", getFactor(12, 2).toString());
-    assertEquals("Factor{prime=5, frequency=2}", getFactor(100, 5).toString());
   }
 
   @Test

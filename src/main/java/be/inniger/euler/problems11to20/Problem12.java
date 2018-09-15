@@ -1,13 +1,11 @@
 package be.inniger.euler.problems11to20;
 
 import be.inniger.euler.util.Math;
-import be.inniger.euler.util.PrimeCollection;
-import be.inniger.euler.value.Factor;
 
 import java.util.stream.IntStream;
-import java.util.stream.StreamSupport;
 
 // TODO revisit one day to speed up the solution
+
 /**
  * Highly divisible triangular number
  * <p>
@@ -27,7 +25,6 @@ import java.util.stream.StreamSupport;
 public class Problem12 {
 
   private static final int MINIMUM_NR_DIVISORS = 500 + 1;
-  private final PrimeCollection primes = new PrimeCollection();
 
   public int solve() {
     return IntStream.iterate(1, Math::inc)
@@ -42,13 +39,15 @@ public class Problem12 {
   }
 
   private int getNrDivisors(int number) {
-    int biggestPotentialPrimeDivisor = Math.roundedSqrt(number);
+//    int biggestPotentialPrimeDivisor = Math.roundedSqrt(number);
+//
+//    return StreamSupport.stream(UnboundPrimeSupplier.getInstance().spliterator(), false)
+//        .takeWhile(prime -> prime <= biggestPotentialPrimeDivisor)
+//        .map(prime -> Math.getFactor(number, prime))
+//        .mapToInt(Factor::getFrequency)
+//        .map(Math::inc)
+//        .reduce(1, Math::multiply);
 
-    return StreamSupport.stream(primes.spliterator(), false)
-        .takeWhile(prime -> prime <= biggestPotentialPrimeDivisor)
-        .map(prime -> Math.getFactor(number, prime))
-        .mapToInt(Factor::getFrequency)
-        .map(Math::inc)
-        .reduce(1, Math::multiply);
+    return 42; // FIXME
   }
 }
