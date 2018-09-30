@@ -42,11 +42,11 @@ public class UnboundPrimeSupplier implements PrimeSupplier {
       if (index >= primes.size()) {
         lock.lock();
         try {
-          while (index >= upUntilNr) {
+          while (index >= primes.size()) {
             upUntilNr *= 2;
+            primes = Math.getPrimesUpUntil(upUntilNr);
           }
 
-          primes = Math.getPrimesUpUntil(upUntilNr);
         } finally {
           lock.unlock();
         }

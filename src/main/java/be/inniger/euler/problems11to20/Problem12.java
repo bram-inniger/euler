@@ -1,10 +1,14 @@
 package be.inniger.euler.problems11to20;
 
 import be.inniger.euler.util.Math;
+import be.inniger.euler.value.FactorizedInteger;
+import be.inniger.euler.value.FactorizedInteger.Factor;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.IntStream;
 
-// TODO revisit one day to speed up the solution
+import static be.inniger.euler.util.Math.isEven;
 
 /**
  * Highly divisible triangular number
@@ -25,29 +29,38 @@ import java.util.stream.IntStream;
 public class Problem12 {
 
   private static final int MINIMUM_NR_DIVISORS = 500 + 1;
+  private final Map<Integer, Integer> nrDivisorsCache = new HashMap<>();
 
   public int solve() {
     return IntStream.iterate(1, Math::inc)
+        .dropWhile(n -> getNrDivisorsOfNthTriangle(n) < MINIMUM_NR_DIVISORS)
         .map(this::getNthTriangle)
-        .dropWhile(triangle -> getNrDivisors(triangle) < MINIMUM_NR_DIVISORS)
         .findFirst()
         .orElseThrow();
   }
 
-  private int getNthTriangle(int n) {
-    return (n + 1) * n / 2;
+  /*
+   * If "t" is the "n-th" triangle number the following relationship holds, on account of n and n+1 being always co-prime
+   *
+   * D(t) = D(n/2) * D(n+1)     -- if n   is even
+   * D(t) = D(n)   * D((n+1)/2) -- if n+1 is even
+   */
+  private int getNrDivisorsOfNthTriangle(int n) {
+    return isEven(n) ?
+        getNrDivisors(n / 2) * getNrDivisors(n + 1) :
+        getNrDivisors(n) * getNrDivisors((n + 1) / 2);
   }
 
   private int getNrDivisors(int number) {
-//    int biggestPotentialPrimeDivisor = Math.roundedSqrt(number);
-//
-//    return StreamSupport.stream(UnboundPrimeSupplier.getInstance().spliterator(), false)
-//        .takeWhile(prime -> prime <= biggestPotentialPrimeDivisor)
-//        .map(prime -> Math.getFactor(number, prime))
-//        .mapToInt(Factor::getFrequency)
-//        .map(Math::inc)
-//        .reduce(1, Math::multiply);
+    return nrDivisorsCache.computeIfAbsent(number, __ ->
+        FactorizedInteger.valueOf(number)
+            .getFactors()
+            .map(Factor::getExponent)
+            .mapToInt(Math::inc)
+            .reduce(1, Math::multiply));
+  }
 
-    return 42; // FIXME
+  private int getNthTriangle(int n) {
+    return (n + 1) * n / 2;
   }
 }

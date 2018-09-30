@@ -165,4 +165,20 @@ public final class Math {
   public static long abs(long number) {
     return java.lang.Math.abs(number);
   }
+
+  public static boolean isEven(int number) {
+    return number % 2 == 0;
+  }
+
+  public static boolean isEven(long number) {
+    return number % 2 == 0;
+  }
+
+  public static boolean isOdd(int number) {
+    return !isEven(number);
+  }
+
+  public static boolean isOdd(long number) {
+    return !isEven(number);
+  }
 }

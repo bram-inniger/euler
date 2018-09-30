@@ -2,6 +2,7 @@ package be.inniger.euler.value;
 
 import be.inniger.euler.util.Math;
 import be.inniger.euler.util.PrimeSupplier;
+import be.inniger.euler.util.UnboundPrimeSupplier;
 
 import java.util.Map;
 import java.util.Objects;
@@ -33,8 +34,9 @@ public final class FactorizedInteger {
             identity()));
   }
 
-  public static FactorizedInteger valueOf(int value, PrimeSupplier primes) {
-    return new FactorizedInteger(value, primes);
+  // FIXME introduce a dependency injection framework to inject this here, also go over other code to see if similar is needed
+  public static FactorizedInteger valueOf(int value) {
+    return new FactorizedInteger(value, UnboundPrimeSupplier.newInstance());
   }
 
   private Optional<Factor> getFactor(int prime) {
@@ -82,11 +84,11 @@ public final class FactorizedInteger {
   public static final class Factor {
 
     private final int prime;
-    private final int frequency;
+    private final int exponent;
 
-    private Factor(int prime, int frequency) {
+    private Factor(int prime, int exponent) {
       this.prime = prime;
-      this.frequency = frequency;
+      this.exponent = exponent;
     }
 
     private static Factor createFactor(int prime, int frequency) {
@@ -97,12 +99,12 @@ public final class FactorizedInteger {
       return prime;
     }
 
-    public int getFrequency() {
-      return frequency;
+    public int getExponent() {
+      return exponent;
     }
 
     public int getValue() {
-      return Math.pow(prime, frequency);
+      return Math.pow(prime, exponent);
     }
 
     @Override
@@ -111,19 +113,19 @@ public final class FactorizedInteger {
       if (o == null || getClass() != o.getClass()) return false;
       Factor factor = (Factor) o;
       return prime == factor.prime &&
-          frequency == factor.frequency;
+          exponent == factor.exponent;
     }
 
     @Override
     public int hashCode() {
-      return Objects.hash(prime, frequency);
+      return Objects.hash(prime, exponent);
     }
 
     @Override
     public String toString() {
       return "Factor{" +
           "prime=" + prime +
-          ", frequency=" + frequency +
+          ", exponent=" + exponent +
           '}';
     }
   }

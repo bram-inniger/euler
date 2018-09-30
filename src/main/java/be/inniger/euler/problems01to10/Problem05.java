@@ -1,7 +1,6 @@
 package be.inniger.euler.problems01to10;
 
 import be.inniger.euler.util.Math;
-import be.inniger.euler.util.UnboundPrimeSupplier;
 import be.inniger.euler.value.FactorizedInteger;
 import be.inniger.euler.value.FactorizedInteger.Factor;
 
@@ -23,13 +22,13 @@ public class Problem05 {
 
   public int solve() {
     return IntStream.rangeClosed(1, MAX_VALUE) // Iterate over all numbers from 1 to 20
-        .mapToObj(value -> FactorizedInteger.valueOf(value, UnboundPrimeSupplier.newInstance())) // Decompose every number into its Factors
+        .mapToObj(FactorizedInteger::valueOf) // Decompose every number into its Factors
         .flatMap(FactorizedInteger::getFactors) // Stream all these Factors
         .collect(groupingBy(Factor::getPrime)) // Group all these Factors by prime
         .values()
         .stream()
         .map(factorsPerPrime -> factorsPerPrime.stream()
-            .max(comparing(Factor::getFrequency))) // Per prime pick the factor with the highest frequency
+            .max(comparing(Factor::getExponent))) // Per prime pick the factor with the highest frequency
         .flatMap(Optional::stream)
         .map(Factor::getValue) // Get the power of each prime factor back with its frequency
         .reduce(1, Math::multiply); // Make the product of all these powers to get the smallest number evenly divisible by all numbers
