@@ -1,5 +1,6 @@
 package be.inniger.euler.problems11to20;
 
+import be.inniger.euler.Problem;
 import be.inniger.euler.util.Math;
 
 import java.util.List;
@@ -16,11 +17,12 @@ import static java.util.stream.Collectors.toUnmodifiableList;
  * The product of these numbers is 26 × 63 × 78 × 14 = 1788696.
  * What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20×20 grid?
  */
-public class Problem11 {
+public class Problem11 implements Problem {
 
   private static final int NR_ADJACENT = 4;
 
-  public int solve() {
+  @Override
+  public long solve() {
     var grid = readGrid();
     validateGrid(grid);
 

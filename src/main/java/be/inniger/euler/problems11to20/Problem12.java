@@ -1,5 +1,6 @@
 package be.inniger.euler.problems11to20;
 
+import be.inniger.euler.Problem;
 import be.inniger.euler.util.Math;
 import be.inniger.euler.value.FactorizedInteger;
 import be.inniger.euler.value.FactorizedInteger.Factor;
@@ -26,12 +27,13 @@ import static be.inniger.euler.util.Math.isEven;
  * We can see that 28 is the first triangle number to have over five divisors.
  * What is the value of the first triangle number to have over five hundred divisors?
  */
-public class Problem12 {
+public class Problem12 implements Problem {
 
   private static final int MINIMUM_NR_DIVISORS = 500 + 1;
   private final Map<Integer, Integer> nrDivisorsCache = new HashMap<>();
 
-  public int solve() {
+  @Override
+  public long solve() {
     return IntStream.iterate(1, Math::inc)
         .dropWhile(n -> getNrDivisorsOfNthTriangle(n) < MINIMUM_NR_DIVISORS)
         .map(this::getNthTriangle)

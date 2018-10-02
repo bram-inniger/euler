@@ -1,5 +1,7 @@
 package be.inniger.euler.problems11to20;
 
+import be.inniger.euler.Problem;
+
 import java.math.BigInteger;
 
 import static be.inniger.euler.util.Math.factorial;
@@ -10,7 +12,7 @@ import static be.inniger.euler.util.Math.factorial;
  * Starting in the top left corner of a 2×2 grid, and only being able to move to the right and down, there are exactly 6 routes to the bottom right corner.
  * How many such routes are there through a 20×20 grid?
  */
-public class Problem15 {
+public class Problem15 implements Problem {
 
   private static final int GRID_DIMENSION = 20;
 
@@ -63,6 +65,7 @@ public class Problem15 {
    *
    * In the GRID_DIMENSION = 20 case n = 2*20 = 40 and k = 20
    */
+  @Override
   public long solve() {
     return nChooseK(2 * GRID_DIMENSION, GRID_DIMENSION)
         .longValueExact();

@@ -1,5 +1,6 @@
 package be.inniger.euler.problems01to10;
 
+import be.inniger.euler.Problem;
 import be.inniger.euler.util.Math;
 import be.inniger.euler.value.FactorizedInteger;
 import be.inniger.euler.value.FactorizedInteger.Factor;
@@ -16,11 +17,12 @@ import static java.util.stream.Collectors.groupingBy;
  * 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
  * What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
  */
-public class Problem05 {
+public class Problem05 implements Problem {
 
   private static final int MAX_VALUE = 20;
 
-  public int solve() {
+  @Override
+  public long solve() {
     return IntStream.rangeClosed(1, MAX_VALUE) // Iterate over all numbers from 1 to 20
         .mapToObj(FactorizedInteger::valueOf) // Decompose every number into its Factors
         .flatMap(FactorizedInteger::getFactors) // Stream all these Factors

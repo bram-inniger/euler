@@ -1,5 +1,7 @@
 package be.inniger.euler.problems01to10;
 
+import be.inniger.euler.Problem;
+
 /**
  * Even Fibonacci numbers
  * <p>
@@ -7,11 +9,12 @@ package be.inniger.euler.problems01to10;
  * 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...
  * By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
  */
-public class Problem02 {
+public class Problem02 implements Problem {
 
   private static final int MAX_VALUE = 4_000_000;
 
-  public int solve() {
+  @Override
+  public long solve() {
     return fib(1, 0, 0);
   }
 

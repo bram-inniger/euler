@@ -1,5 +1,7 @@
 package be.inniger.euler.problems11to20;
 
+import be.inniger.euler.Problem;
+
 import java.util.stream.LongStream;
 
 import static java.util.Comparator.comparing;
@@ -18,10 +20,11 @@ import static java.util.Comparator.comparing;
  * Which starting number, under one million, produces the longest chain?
  * NOTE: Once the chain starts the terms are allowed to go above one million.
  */
-public class Problem14 {
+public class Problem14 implements Problem {
 
   private static final long MAX_STARTING_NUMBER = 1_000_000L;
 
+  @Override
   public long solve() {
     return LongStream.rangeClosed(1, MAX_STARTING_NUMBER)
         .parallel() // No memoization yet means the order of computation is completely independent and the stream may be parallel

@@ -1,5 +1,6 @@
 package be.inniger.euler.problems01to10;
 
+import be.inniger.euler.Problem;
 import be.inniger.euler.util.Math;
 
 import java.util.stream.IntStream;
@@ -14,11 +15,12 @@ import java.util.stream.IntStream;
  * Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is 3025 − 385 = 2640.
  * Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
  */
-public class Problem06 {
+public class Problem06 implements Problem {
 
   private static final int MAX_VALUE = 100;
 
-  public int solve() {
+  @Override
+  public long solve() {
     var squareOfSums = IntStream.rangeClosed(1, MAX_VALUE).boxed().reduce(Math::sum).map(Math::square).orElseThrow();
     var sumOfSquares = IntStream.rangeClosed(1, MAX_VALUE).boxed().map(Math::square).reduce(Math::sum).orElseThrow();
 

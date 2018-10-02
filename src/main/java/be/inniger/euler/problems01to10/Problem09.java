@@ -1,5 +1,7 @@
 package be.inniger.euler.problems01to10;
 
+import be.inniger.euler.Problem;
+
 import java.util.stream.IntStream;
 
 /**
@@ -11,11 +13,12 @@ import java.util.stream.IntStream;
  * There exists exactly one Pythagorean triplet for which a + b + c = 1000.
  * Find the product abc.
  */
-public class Problem09 {
+public class Problem09 implements Problem {
 
   private static final int TRIPLET_SUM = 1000;
 
-  public int solve() {
+  @Override
+  public long solve() {
     return IntStream.rangeClosed(1, TRIPLET_SUM)
         .boxed()
         .flatMap(a -> IntStream.rangeClosed(1, TRIPLET_SUM)

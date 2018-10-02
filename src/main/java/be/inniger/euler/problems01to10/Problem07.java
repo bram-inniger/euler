@@ -1,5 +1,7 @@
 package be.inniger.euler.problems01to10;
 
+import be.inniger.euler.Problem;
+
 import java.util.stream.DoubleStream;
 
 import static be.inniger.euler.util.Math.getPrimesUpUntil;
@@ -11,12 +13,13 @@ import static be.inniger.euler.util.Math.log;
  * By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
  * What is the 10 001st prime number?
  */
-public class Problem07 {
+public class Problem07 implements Problem {
 
   // -1 as the problem specification is 1-indexed but Java's collections are 0-indexed
   private static final int PRIME_INDEX = 10_001 - 1;
 
-  public int solve() {
+  @Override
+  public long solve() {
     return getPrimesUpUntil(getUpperBound()).get(PRIME_INDEX);
   }
 

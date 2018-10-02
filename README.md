@@ -15,7 +15,7 @@ Serves also to further practice git, java 11, maven...
 ## How to read
 
 Each and every problem has its own class file containing the code how to solve it.
-Every time a test file accompanies the class containing the actual solution, and validating the code.
+Every time a test is added to [the aggregated problems test (AllProblemsTest.java)](https://github.com/bram-inniger/euler/blob/master/src/test/java/be/inniger/euler/AllProblemsTest.java).
 
 ## TODO
 Solve more problems (or reclaim the old ones and polish them back up)
