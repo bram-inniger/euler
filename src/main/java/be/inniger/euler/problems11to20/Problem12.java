@@ -2,14 +2,14 @@ package be.inniger.euler.problems11to20;
 
 import be.inniger.euler.Problem;
 import be.inniger.euler.util.Math;
-import be.inniger.euler.value.FactorizedInteger;
-import be.inniger.euler.value.FactorizedInteger.Factor;
+import be.inniger.euler.value.Factor;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.IntStream;
 
 import static be.inniger.euler.util.Math.isEven;
+import static be.inniger.euler.value.FactorizedInteger.factorizedInteger;
 
 /**
  * Highly divisible triangular number
@@ -56,7 +56,7 @@ public class Problem12 implements Problem {
 
   private int getNrDivisors(int number, Map<Integer, Integer> cache) {
     return cache.computeIfAbsent(number, __ ->
-        FactorizedInteger.valueOf(number)
+        factorizedInteger(number)
             .getFactors()
             .map(Factor::getExponent)
             .mapToInt(Math::inc)

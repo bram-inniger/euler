@@ -2,8 +2,8 @@ package be.inniger.euler.problems01to10;
 
 import be.inniger.euler.Problem;
 import be.inniger.euler.util.Math;
+import be.inniger.euler.value.Factor;
 import be.inniger.euler.value.FactorizedInteger;
-import be.inniger.euler.value.FactorizedInteger.Factor;
 
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -24,7 +24,7 @@ public class Problem05 implements Problem {
   @Override
   public long solve() {
     return IntStream.rangeClosed(1, MAX_VALUE) // Iterate over all numbers from 1 to 20
-        .mapToObj(FactorizedInteger::valueOf) // Decompose every number into its Factors
+        .mapToObj(FactorizedInteger::factorizedInteger) // Decompose every number into its Factors
         .flatMap(FactorizedInteger::getFactors) // Stream all these Factors
         .collect(groupingBy(Factor::getPrime)) // Group all these Factors by prime
         .values()

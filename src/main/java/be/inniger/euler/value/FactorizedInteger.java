@@ -1,6 +1,5 @@
 package be.inniger.euler.value;
 
-import be.inniger.euler.util.Math;
 import be.inniger.euler.util.PrimeSupplier;
 import be.inniger.euler.util.UnboundPrimeSupplier;
 
@@ -12,6 +11,7 @@ import java.util.stream.Stream;
 
 import static be.inniger.euler.util.Math.abs;
 import static be.inniger.euler.util.Math.pow;
+import static be.inniger.euler.value.Factor.factor;
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.toUnmodifiableMap;
 
@@ -34,7 +34,7 @@ public final class FactorizedInteger {
             identity()));
   }
 
-  public static FactorizedInteger valueOf(int value) {
+  public static FactorizedInteger factorizedInteger(int value) {
     return new FactorizedInteger(value, UnboundPrimeSupplier.newInstance());
   }
 
@@ -48,7 +48,7 @@ public final class FactorizedInteger {
             .findFirst()
             .orElseThrow();
     return frequency != 0 ?
-        Optional.of(Factor.createFactor(prime, frequency)) :
+        Optional.of(factor(prime, frequency)) :
         Optional.empty();
   }
 
@@ -77,55 +77,4 @@ public final class FactorizedInteger {
         '}';
   }
 
-  /**
-   * Store which prime occurred how many times in a number.
-   */
-  public static final class Factor {
-
-    private final int prime;
-    private final int exponent;
-
-    private Factor(int prime, int exponent) {
-      this.prime = prime;
-      this.exponent = exponent;
-    }
-
-    private static Factor createFactor(int prime, int frequency) {
-      return new Factor(prime, frequency);
-    }
-
-    public int getPrime() {
-      return prime;
-    }
-
-    public int getExponent() {
-      return exponent;
-    }
-
-    public int getValue() {
-      return Math.pow(prime, exponent);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-      Factor factor = (Factor) o;
-      return prime == factor.prime &&
-          exponent == factor.exponent;
-    }
-
-    @Override
-    public int hashCode() {
-      return Objects.hash(prime, exponent);
-    }
-
-    @Override
-    public String toString() {
-      return "Factor{" +
-          "prime=" + prime +
-          ", exponent=" + exponent +
-          '}';
-    }
-  }
 }

@@ -6,8 +6,6 @@ import java.util.stream.LongStream;
 
 import static java.util.Comparator.comparing;
 
-// TODO revisit one day to speed up the solution (implement memoization)
-
 /**
  * Longest Collatz sequence
  * <p>
@@ -59,11 +57,13 @@ public class Problem14 implements Problem {
     private long calculatePathLengthRec(long number, long pathLengthAcc) {
       if (number == 1) {
         return pathLengthAcc;
-      } else if (number % 2 == 0) {
-        return calculatePathLengthRec(number / 2, ++pathLengthAcc);
-      } else {
-        return calculatePathLengthRec(number * 3 + 1, ++pathLengthAcc);
       }
+
+      var nextNumber = number % 2 == 0 ?
+          number / 2 :
+          number * 3 + 1;
+
+      return calculatePathLengthRec(nextNumber, pathLengthAcc + 1);
     }
   }
 }
