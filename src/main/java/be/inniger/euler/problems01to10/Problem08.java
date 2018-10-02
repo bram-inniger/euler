@@ -18,10 +18,11 @@ import static java.util.stream.Collectors.toUnmodifiableList;
 public class Problem08 implements Problem {
 
   private static final int NR_ADJACENT_DIGITS = 13;
-  private final List<Integer> number = readNumber();
 
   @Override
   public long solve() {
+    var number = readNumber();
+
     return IntStream.rangeClosed(0, number.size() - NR_ADJACENT_DIGITS)
         .mapToObj(beginIndex -> number.subList(beginIndex, beginIndex + NR_ADJACENT_DIGITS))
         .mapToLong(digits -> digits.stream()

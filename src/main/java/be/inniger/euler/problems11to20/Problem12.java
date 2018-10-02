@@ -30,12 +30,13 @@ import static be.inniger.euler.util.Math.isEven;
 public class Problem12 implements Problem {
 
   private static final int MINIMUM_NR_DIVISORS = 500 + 1;
-  private final Map<Integer, Integer> nrDivisorsCache = new HashMap<>();
 
   @Override
   public long solve() {
+    var nrDivisorsCache = new HashMap<Integer, Integer>();
+
     return IntStream.iterate(1, Math::inc)
-        .dropWhile(n -> getNrDivisorsOfNthTriangle(n) < MINIMUM_NR_DIVISORS)
+        .dropWhile(n -> getNrDivisorsOfNthTriangle(n, nrDivisorsCache) < MINIMUM_NR_DIVISORS)
         .map(this::getNthTriangle)
         .findFirst()
         .orElseThrow();
@@ -47,14 +48,14 @@ public class Problem12 implements Problem {
    * D(t) = D(n/2) * D(n+1)     -- if n   is even
    * D(t) = D(n)   * D((n+1)/2) -- if n+1 is even
    */
-  private int getNrDivisorsOfNthTriangle(int n) {
+  private int getNrDivisorsOfNthTriangle(int n, Map<Integer, Integer> cache) {
     return isEven(n) ?
-        getNrDivisors(n / 2) * getNrDivisors(n + 1) :
-        getNrDivisors(n) * getNrDivisors((n + 1) / 2);
+        getNrDivisors(n / 2, cache) * getNrDivisors(n + 1, cache) :
+        getNrDivisors(n, cache) * getNrDivisors((n + 1) / 2, cache);
   }
 
-  private int getNrDivisors(int number) {
-    return nrDivisorsCache.computeIfAbsent(number, __ ->
+  private int getNrDivisors(int number, Map<Integer, Integer> cache) {
+    return cache.computeIfAbsent(number, __ ->
         FactorizedInteger.valueOf(number)
             .getFactors()
             .map(Factor::getExponent)

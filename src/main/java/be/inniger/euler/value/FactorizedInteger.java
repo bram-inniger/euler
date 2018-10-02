@@ -34,7 +34,6 @@ public final class FactorizedInteger {
             identity()));
   }
 
-  // FIXME introduce a dependency injection framework to inject this here, also go over other code to see if similar is needed
   public static FactorizedInteger valueOf(int value) {
     return new FactorizedInteger(value, UnboundPrimeSupplier.newInstance());
   }

@@ -18,7 +18,9 @@ Each and every problem has its own class file containing the code how to solve i
 Every time a test is added to [the aggregated problems test (AllProblemsTest.java)](https://github.com/bram-inniger/euler/blob/master/src/test/java/be/inniger/euler/AllProblemsTest.java).
 
 ## TODO
-Solve more problems (or reclaim the old ones and polish them back up)
+* Solve more problems (or reclaim the old ones and polish them back up)
+* Introduce a DI framework
+* Introduce a caching framework
 
 ## License
 
