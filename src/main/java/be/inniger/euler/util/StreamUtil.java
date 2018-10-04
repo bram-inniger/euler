@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import static java.util.function.Predicate.not;
+
 public final class StreamUtil {
 
   private StreamUtil() {
@@ -23,7 +25,7 @@ public final class StreamUtil {
          var isr = new InputStreamReader(is);
          var br = new BufferedReader(isr)) {
       var lines = br.lines() // Results in Stream<String>, 1 String per line in the file
-          .filter(line -> !line.isEmpty()); // Remove empty lines
+          .filter(not(String::isEmpty)); // Remove empty lines
       return transformer.transform(lines);
     } catch (IOException e) {
       throw new RuntimeException(e);

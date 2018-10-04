@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
-import static java.lang.Double.isNaN;
 import static java.lang.String.format;
 import static java.util.Arrays.fill;
+import static java.util.function.Predicate.not;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
 public final class Math {
@@ -41,7 +41,7 @@ public final class Math {
     return Optional.ofNullable(number)
         .map(Number::doubleValue)
         .map(java.lang.Math::sqrt)
-        .filter(root -> !isNaN(root))
+        .filter(not(Math::isNaN))
         .map(java.lang.Math::round)
         .map(Long::intValue)
         .orElseThrow();
@@ -180,5 +180,9 @@ public final class Math {
 
   public static boolean isOdd(long number) {
     return !isEven(number);
+  }
+
+  public static boolean isNaN(double number) {
+    return Double.isNaN(number);
   }
 }
