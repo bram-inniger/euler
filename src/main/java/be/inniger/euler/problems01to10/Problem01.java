@@ -2,6 +2,7 @@ package be.inniger.euler.problems01to10;
 
 import be.inniger.euler.Problem;
 
+import java.util.function.IntPredicate;
 import java.util.stream.IntStream;
 
 /**
@@ -16,8 +17,14 @@ public class Problem01 implements Problem {
 
   @Override
   public long solve() {
+    IntPredicate isMultipleOfThreeOrFive = isMultipleOf(3).or(isMultipleOf(5));
+
     return IntStream.range(0, MAX_VALUE)
-        .filter(i -> i % 3 == 0 || i % 5 == 0)
+        .filter(isMultipleOfThreeOrFive)
         .sum();
+  }
+
+  private IntPredicate isMultipleOf(int number) {
+    return i -> i % number == 0;
   }
 }
