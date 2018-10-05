@@ -41,14 +41,14 @@ public final class FactorizedInteger {
   private Optional<Factor> getFactor(int prime) {
     // Calculate how many times a given prime "fits" in a number, 
     // the first time "nr times it fits + 1" is no fit, the answer is found!
-    var frequency = absValue % prime != 0 ?
+    var exponent = absValue % prime != 0 ?
         0 :
         IntStream.iterate(1, be.inniger.euler.util.Math::inc)
             .dropWhile(i -> absValue % pow(prime, i + 1) == 0)
             .findFirst()
             .orElseThrow();
-    return frequency != 0 ?
-        Optional.of(factor(prime, frequency)) :
+    return exponent != 0 ?
+        Optional.of(factor(prime, exponent)) :
         Optional.empty();
   }
 

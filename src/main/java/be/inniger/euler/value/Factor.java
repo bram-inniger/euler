@@ -4,9 +4,9 @@ import be.inniger.euler.util.Math;
 
 import java.util.Objects;
 
-/**
- * TODO add better description
- * Store which prime occurred how many times in a number.
+/*
+ * Abstraction used to represent a factor from a factorized number.
+ * E.g. 8 factorized yields a factor from prime value 2 occurring 3 times (exponent)
  */
 public final class Factor {
 
@@ -18,8 +18,8 @@ public final class Factor {
     this.exponent = exponent;
   }
 
-  public static Factor factor(int prime, int frequency) {
-    return new Factor(prime, frequency);
+  public static Factor factor(int prime, int exponent) {
+    return new Factor(prime, exponent);
   }
 
   public int getPrime() {
@@ -30,6 +30,9 @@ public final class Factor {
     return exponent;
   }
 
+  /*
+   * Returns the total value this one factor contributes to the number
+   */
   public int getValue() {
     return Math.pow(prime, exponent);
   }
