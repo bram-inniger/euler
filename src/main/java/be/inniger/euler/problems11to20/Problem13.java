@@ -8,9 +8,9 @@ import java.util.List;
 import static be.inniger.euler.util.StreamUtil.readProblemDataAndTransform;
 import static java.util.stream.Collectors.toList;
 
-/**
+/*
  * Large sum
- * <p>
+ *
  * Work out the first ten digits of the sum of the following one-hundred 50-digit numbers.
  */
 public class Problem13 implements Problem {

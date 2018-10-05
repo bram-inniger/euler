@@ -9,9 +9,9 @@ import java.util.stream.IntStream;
 import static be.inniger.euler.util.StreamUtil.readProblemDataAndTransform;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
-/**
+/*
  * Largest product in a series
- * <p>
+ *
  * The four adjacent digits in the 1000-digit number that have the greatest product are 9 × 9 × 8 × 9 = 5832.
  * Find the thirteen adjacent digits in the 1000-digit number that have the greatest product. What is the value of this product?
  */

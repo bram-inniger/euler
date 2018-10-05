@@ -5,9 +5,9 @@ import be.inniger.euler.util.Math;
 
 import static be.inniger.euler.util.Math.getPrimesUpUntil;
 
-/**
+/*
  * Summation of primes
- * <p>
+ *
  * The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
  * Find the sum of all the primes below two million.
  */
