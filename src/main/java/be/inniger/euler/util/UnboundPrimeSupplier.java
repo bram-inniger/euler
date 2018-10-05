@@ -4,9 +4,7 @@ import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-// TODO: Add tests and perhaps move its package
-
-/**
+/*
  * Queryable collection of primes, backed by the sieve, will dynamically grow if more primes are requested
  */
 public class UnboundPrimeSupplier implements PrimeSupplier {
@@ -26,6 +24,7 @@ public class UnboundPrimeSupplier implements PrimeSupplier {
   }
 
   private enum UnboundPrimeList {
+
     INSTANCE;
 
     private static final int STARTING_UP_UNTIL_NR = 1000;

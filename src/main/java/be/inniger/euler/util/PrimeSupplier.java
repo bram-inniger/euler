@@ -10,4 +10,5 @@ public interface PrimeSupplier {
   default IntStream asStream() {
     return IntStream.iterate(nextPrime(), __ -> nextPrime());
   }
+
 }
