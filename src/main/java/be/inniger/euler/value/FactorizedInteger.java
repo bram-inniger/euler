@@ -15,7 +15,10 @@ import static be.inniger.euler.value.Factor.factor;
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.toUnmodifiableMap;
 
-// TODO add description and test
+/*
+ * Abstraction used to represent a factorized integer.
+ * E.g.: the integer 20 factorizes into "2^2 * 5^1".
+ */
 public final class FactorizedInteger {
 
   private final int value;
@@ -76,5 +79,4 @@ public final class FactorizedInteger {
         ", factors=" + factors +
         '}';
   }
-
 }
