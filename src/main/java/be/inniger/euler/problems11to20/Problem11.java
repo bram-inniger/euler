@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static be.inniger.euler.util.StreamUtil.readProblemDataAndTransform;
+import static be.inniger.euler.util.CollectionUtil.lastIndex;
+import static be.inniger.euler.util.CollectionUtil.readProblemDataAndTransform;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
 /*
@@ -45,8 +46,7 @@ public class Problem11 implements Problem {
         lines.map(line -> line.split(" "))
             .map(Stream::of) // Results in Stream<Stream<String>>, split every line in its separate String values
             .map(numberStream -> numberStream.map(Integer::parseInt).collect(toUnmodifiableList()))
-            .collect(toUnmodifiableList()) // Results in List<List<Integer>>, the grid, by converting every single String into an Integer
-    );
+            .collect(toUnmodifiableList())); // Results in List<List<Integer>>, the grid, by converting every single String into an Integer
   }
 
   private void validateGrid(List<List<Integer>> grid) {
@@ -106,8 +106,8 @@ public class Problem11 implements Problem {
     private boolean isValid() {
       return line.get(0).x >= 0 && line.get(0).x < grid.get(0).size() &&
           line.get(0).y >= 0 && line.get(0).y < grid.size() &&
-          line.get(line.size() - 1).x >= 0 && line.get(line.size() - 1).x < grid.get(0).size() &&
-          line.get(line.size() - 1).y >= 0 && line.get(line.size() - 1).y < grid.size();
+          line.get(lastIndex(line)).x >= 0 && line.get(lastIndex(line)).x < grid.get(0).size() &&
+          line.get(lastIndex(line)).y >= 0 && line.get(lastIndex(line)).y < grid.size();
     }
 
     // Calculate the product of the 4 adjacent numbers on the line

@@ -3,20 +3,21 @@ package be.inniger.euler.util;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static java.util.function.Predicate.not;
 
-public final class StreamUtil {
+public final class CollectionUtil {
 
-  private StreamUtil() {
+  private CollectionUtil() {
     throw new IllegalStateException("Utility class constructor should never be called!");
   }
 
   public static <T> Stream<T> reverseStream(List<T> list) {
-    return IntStream.iterate(list.size() - 1, Math::isStrictlyPositive, Math::dec)
+    return IntStream.iterate(lastIndex(list), Math::isStrictlyPositive, Math::dec)
         .mapToObj(list::get);
   }
 
@@ -30,6 +31,24 @@ public final class StreamUtil {
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
+  }
+
+  public static <T> T getSingleElement(Collection<T> collection) {
+    if (collection == null || collection.size() != 1) {
+      throw new IllegalArgumentException("Collection did not have size 1!");
+    }
+
+    return collection.stream()
+        .findAny()
+        .orElseThrow();
+  }
+
+  public static int lastIndex(List<?> list) {
+    if (list == null) {
+      throw new IllegalArgumentException("List cannot be null!");
+    }
+
+    return list.size() - 1;
   }
 
   @FunctionalInterface

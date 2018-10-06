@@ -2,9 +2,9 @@ package be.inniger.euler.problems01to10;
 
 import be.inniger.euler.Problem;
 
+import static be.inniger.euler.util.CollectionUtil.reverseStream;
 import static be.inniger.euler.util.Math.getPrimesUpUntil;
 import static be.inniger.euler.util.Math.roundedSqrt;
-import static be.inniger.euler.util.StreamUtil.reverseStream;
 
 /*
  * Largest prime factor

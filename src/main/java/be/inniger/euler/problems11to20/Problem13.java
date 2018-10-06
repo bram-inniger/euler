@@ -5,8 +5,8 @@ import be.inniger.euler.Problem;
 import java.math.BigInteger;
 import java.util.List;
 
-import static be.inniger.euler.util.StreamUtil.readProblemDataAndTransform;
-import static java.util.stream.Collectors.toList;
+import static be.inniger.euler.util.CollectionUtil.readProblemDataAndTransform;
+import static java.util.stream.Collectors.toUnmodifiableList;
 
 /*
  * Large sum
@@ -30,6 +30,6 @@ public class Problem13 implements Problem {
   private List<BigInteger> readNumbers() {
     return readProblemDataAndTransform("Problem13", lines ->
         lines.map(BigInteger::new)
-            .collect(toList()));
+            .collect(toUnmodifiableList()));
   }
 }

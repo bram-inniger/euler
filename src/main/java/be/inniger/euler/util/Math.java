@@ -185,4 +185,12 @@ public final class Math {
   public static boolean isNaN(double number) {
     return Double.isNaN(number);
   }
+
+  public static int max(int a, int b) {
+    return java.lang.Math.max(a, b);
+  }
+
+  public static long max(long a, long b) {
+    return java.lang.Math.max(a, b);
+  }
 }

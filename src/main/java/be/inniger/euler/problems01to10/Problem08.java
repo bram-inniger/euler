@@ -6,7 +6,7 @@ import be.inniger.euler.util.Math;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static be.inniger.euler.util.StreamUtil.readProblemDataAndTransform;
+import static be.inniger.euler.util.CollectionUtil.readProblemDataAndTransform;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
 /*

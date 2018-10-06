@@ -2,6 +2,8 @@ package be.inniger.euler.util;
 
 import java.util.List;
 
+import static be.inniger.euler.util.CollectionUtil.lastIndex;
+
 public final class Palindrome {
 
   private Palindrome() {
@@ -13,10 +15,10 @@ public final class Palindrome {
       return true;
     }
 
-    if (!list.get(0).equals(list.get(list.size() - 1))) {
+    if (!list.get(0).equals(list.get(lastIndex(list)))) {
       return false;
     }
 
-    return isPalindrome(list.subList(1, list.size() - 1));
+    return isPalindrome(list.subList(1, lastIndex(list)));
   }
 }
