@@ -16,6 +16,7 @@ import be.inniger.euler.problems11to20.Problem13;
 import be.inniger.euler.problems11to20.Problem14;
 import be.inniger.euler.problems11to20.Problem15;
 import be.inniger.euler.problems11to20.Problem16;
+import be.inniger.euler.problems11to20.Problem17;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -45,7 +46,8 @@ public class AllProblemsTest {
         arguments(5537376230L, new Problem13()),
         arguments(837799L, new Problem14()),
         arguments(137846528820L, new Problem15()),
-        arguments(1366, new Problem16()));
+        arguments(1366, new Problem16()),
+        arguments(21124, new Problem17()));
   }
 
   @DisplayName("Verify the solution to all the solved problems")
