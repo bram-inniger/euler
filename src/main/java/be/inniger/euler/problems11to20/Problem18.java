@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import static be.inniger.euler.problems11to20.Problem18.Pyramid.pyramid;
 import static be.inniger.euler.util.CollectionUtil.getSingleElement;
 import static be.inniger.euler.util.CollectionUtil.lastIndex;
 import static be.inniger.euler.util.CollectionUtil.readProblemDataAndTransform;
@@ -25,7 +26,6 @@ import static java.util.stream.Collectors.toUnmodifiableList;
  * Find the maximum total from top to bottom of the triangle below: (see Problem18.txt)
  * NOTE: As there are only 16384 routes, it is possible to solve this problem by trying every route. However, Problem 67, is the same challenge with a triangle containing one-hundred rows; it cannot be solved by brute force, and requires a clever method! ;o)
  */
-// TODO create a static inner class representing the pyramid
 public class Problem18 implements Problem {
 
   /*
@@ -44,35 +44,57 @@ public class Problem18 implements Problem {
    */
   @Override
   public long solve() {
-    var pyramid = readPyramid();
+    var pyramid = pyramid();
 
-    return solve(pyramid.subList(0, lastIndex(pyramid)), pyramid.get(lastIndex(pyramid)));
+    return solve(pyramid.dropBottomRow(), pyramid.getBottomRow());
   }
 
-  private long solve(List<List<Integer>> pyramid, List<Integer> acc) {
+  private long solve(Pyramid pyramid, List<Integer> acc) {
     if (pyramid.isEmpty()) {
       return getSingleElement(acc);
     }
 
-    var lastRow = pyramid.get(lastIndex(pyramid));
+    var lastRow = pyramid.getBottomRow();
     var newAcc = IntStream.iterate(0, i -> i < lastRow.size(), Math::inc)
         .mapToObj(i -> lastRow.get(i) + max(acc.get(i), acc.get(i + 1)))
         .collect(toUnmodifiableList());
 
-    return solve(pyramid.subList(0, lastIndex(pyramid)), newAcc);
+    return solve(pyramid.dropBottomRow(), newAcc);
   }
 
-  private List<List<Integer>> readPyramid() {
-    var pyramid = readProblemDataAndTransform("Problem18", lines ->
-        lines.map(line -> line.split(" "))
-            .map(Stream::of)
-            .map(numberStream -> numberStream.map(Integer::parseInt).collect(toUnmodifiableList()))
-            .collect(toUnmodifiableList()));
 
-    if (pyramid.isEmpty()) {
-      throw new IllegalArgumentException("Pyramid cannot be empty!");
+  static class Pyramid {
+
+    private final List<List<Integer>> pyramid;
+
+    private Pyramid(List<List<Integer>> pyramid) {
+      this.pyramid = pyramid;
     }
 
-    return pyramid;
+    static Pyramid pyramid() {
+      var pyramid = readProblemDataAndTransform("Problem18", lines ->
+          lines.map(line -> line.split(" "))
+              .map(Stream::of)
+              .map(numberStream -> numberStream.map(Integer::parseInt).collect(toUnmodifiableList()))
+              .collect(toUnmodifiableList()));
+
+      if (pyramid.isEmpty()) {
+        throw new IllegalArgumentException("Pyramid cannot be empty!");
+      }
+
+      return new Pyramid(pyramid);
+    }
+
+    private Pyramid dropBottomRow() {
+      return new Pyramid(pyramid.subList(0, lastIndex(pyramid)));
+    }
+
+    private List<Integer> getBottomRow() {
+      return pyramid.get(lastIndex(pyramid));
+    }
+
+    private boolean isEmpty() {
+      return pyramid.isEmpty();
+    }
   }
 }
