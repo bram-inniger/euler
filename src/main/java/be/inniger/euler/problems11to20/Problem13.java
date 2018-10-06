@@ -28,7 +28,7 @@ public class Problem13 implements Problem {
   }
 
   private List<BigInteger> readNumbers() {
-    return readProblemDataAndTransform("Problem13", lines ->
+    return readProblemDataAndTransform(this, lines ->
         lines.map(BigInteger::new)
             .collect(toUnmodifiableList()));
   }

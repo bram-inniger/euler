@@ -1,5 +1,7 @@
 package be.inniger.euler.util;
 
+import be.inniger.euler.Problem;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -21,8 +23,8 @@ public final class CollectionUtil {
         .mapToObj(list::get);
   }
 
-  public static <R> R readProblemDataAndTransform(String problem, ProblemTransformer<R> transformer) {
-    try (var is = Thread.currentThread().getContextClassLoader().getResourceAsStream("problems/" + problem + ".txt");
+  public static <R> R readProblemDataAndTransform(Problem problem, ProblemTransformer<R> transformer) {
+    try (var is = Thread.currentThread().getContextClassLoader().getResourceAsStream("problems/" + problem.getClass().getSimpleName() + ".txt");
          var isr = new InputStreamReader(is);
          var br = new BufferedReader(isr)) {
       var lines = br.lines() // Results in Stream<String>, 1 String per line in the file

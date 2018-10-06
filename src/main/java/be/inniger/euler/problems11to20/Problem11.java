@@ -42,7 +42,7 @@ public class Problem11 implements Problem {
   }
 
   private List<List<Integer>> readGrid() {
-    return readProblemDataAndTransform("Problem11", lines ->
+    return readProblemDataAndTransform(this, lines ->
         lines.map(line -> line.split(" "))
             .map(Stream::of) // Results in Stream<Stream<String>>, split every line in its separate String values
             .map(numberStream -> numberStream.map(Integer::parseInt).collect(toUnmodifiableList()))

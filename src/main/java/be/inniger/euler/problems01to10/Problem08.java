@@ -33,7 +33,7 @@ public class Problem08 implements Problem {
   }
 
   private List<Integer> readNumber() {
-    return readProblemDataAndTransform("Problem08", lines ->
+    return readProblemDataAndTransform(this, lines ->
         lines.flatMap(line -> line.chars()
             .mapToObj(Character::getNumericValue))
             .collect(toUnmodifiableList()));

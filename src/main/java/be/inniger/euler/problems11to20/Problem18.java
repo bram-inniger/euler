@@ -44,7 +44,7 @@ public class Problem18 implements Problem {
    */
   @Override
   public long solve() {
-    var pyramid = pyramid();
+    var pyramid = pyramid(this);
 
     return solve(pyramid.dropBottomRow(), pyramid.getBottomRow());
   }
@@ -71,8 +71,8 @@ public class Problem18 implements Problem {
       this.pyramid = pyramid;
     }
 
-    static Pyramid pyramid() {
-      var pyramid = readProblemDataAndTransform("Problem18", lines ->
+    static Pyramid pyramid(Problem problem) {
+      var pyramid = readProblemDataAndTransform(problem, lines ->
           lines.map(line -> line.split(" "))
               .map(Stream::of)
               .map(numberStream -> numberStream.map(Integer::parseInt).collect(toUnmodifiableList()))

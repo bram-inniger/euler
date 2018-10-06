@@ -1,5 +1,6 @@
 package be.inniger.euler.util;
 
+import be.inniger.euler.Problem;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -29,7 +30,7 @@ public class CollectionUtilTest {
 
   @Test
   public void canReadProblemDataAndTransform() {
-    assertEquals("Hello,World", readProblemDataAndTransform("TestProblem", lines -> lines.collect(joining(","))));
+    assertEquals("Hello,World", readProblemDataAndTransform(new TestProblem(), lines -> lines.collect(joining(","))));
   }
 
   @Test
@@ -61,5 +62,13 @@ public class CollectionUtilTest {
   public void throwsOnLastIndexOfNullList() {
     assertThrows(IllegalArgumentException.class,
         () -> lastIndex(null));
+  }
+
+  private static class TestProblem implements Problem {
+
+    @Override
+    public long solve() {
+      return 42;
+    }
   }
 }
