@@ -6,7 +6,7 @@ import java.util.Set;
 
 import static be.inniger.euler.value.Factor.factor;
 import static be.inniger.euler.value.FactorizedInteger.factorizedInteger;
-import static java.util.stream.Collectors.toSet;
+import static java.util.stream.Collectors.toUnmodifiableSet;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
@@ -51,6 +51,6 @@ class FactorizedIntegerTest {
   }
 
   private Set<Factor> getFactors(int number) {
-    return factorizedInteger(number).getFactors().collect(toSet());
+    return factorizedInteger(number).getFactors().collect(toUnmodifiableSet());
   }
 }

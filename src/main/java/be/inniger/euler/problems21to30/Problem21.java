@@ -32,11 +32,12 @@ public class Problem21 implements Problem {
         properDivisorsSum != number;
   }
 
-  public int getProperDivisorsSum(int number) {
+  private int getProperDivisorsSum(int number) {
     return IntStream.rangeClosed(1, roundedSqrt(number))
         .filter(i -> number % i == 0)
-        .flatMap(i -> IntStream.of(i, number / i))
-        .filter(i -> i != number)
+        .flatMap(i -> i == 1 || i == number / i ? // Do not count number itself (if i == 0) and do not count a divisor twice (if i == number/i)
+            IntStream.of(i) :
+            IntStream.of(i, number / i))
         .sum();
   }
 }
