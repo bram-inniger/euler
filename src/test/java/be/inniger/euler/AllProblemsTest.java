@@ -1,25 +1,8 @@
 package be.inniger.euler;
 
-import be.inniger.euler.problems01to10.Problem01;
-import be.inniger.euler.problems01to10.Problem02;
-import be.inniger.euler.problems01to10.Problem03;
-import be.inniger.euler.problems01to10.Problem04;
-import be.inniger.euler.problems01to10.Problem05;
-import be.inniger.euler.problems01to10.Problem06;
-import be.inniger.euler.problems01to10.Problem07;
-import be.inniger.euler.problems01to10.Problem08;
-import be.inniger.euler.problems01to10.Problem09;
-import be.inniger.euler.problems01to10.Problem10;
-import be.inniger.euler.problems11to20.Problem11;
-import be.inniger.euler.problems11to20.Problem12;
-import be.inniger.euler.problems11to20.Problem13;
-import be.inniger.euler.problems11to20.Problem14;
-import be.inniger.euler.problems11to20.Problem15;
-import be.inniger.euler.problems11to20.Problem16;
-import be.inniger.euler.problems11to20.Problem17;
-import be.inniger.euler.problems11to20.Problem18;
-import be.inniger.euler.problems11to20.Problem19;
-import be.inniger.euler.problems11to20.Problem20;
+import be.inniger.euler.problems01to10.*;
+import be.inniger.euler.problems11to20.*;
+import be.inniger.euler.problems21to30.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -53,7 +36,8 @@ public class AllProblemsTest {
         arguments(21124, new Problem17()),
         arguments(1074, new Problem18()),
         arguments(171, new Problem19()),
-        arguments(648, new Problem20()));
+        arguments(648, new Problem20()),
+        arguments(31626, new Problem21()));
   }
 
   @DisplayName("Verify the solution to all the solved problems")
