@@ -18,7 +18,7 @@ import static java.util.stream.Collectors.toUnmodifiableSet;
  */
 public class Problem23 implements Problem {
 
-  private final static int LIMIT = 28123;
+  private static final int LIMIT = 28123;
 
   @Override
   public long solve() {

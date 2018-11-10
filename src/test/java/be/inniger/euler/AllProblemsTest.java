@@ -39,7 +39,8 @@ public class AllProblemsTest {
         arguments(648, new Problem20()),
         arguments(31626, new Problem21()),
         arguments(871198282, new Problem22()),
-        arguments(4179871, new Problem23()));
+        arguments(4179871, new Problem23()),
+        arguments(2783915460L, new Problem24()));
   }
 
   @DisplayName("Verify the solution to all the solved problems")
