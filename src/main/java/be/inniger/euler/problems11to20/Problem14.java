@@ -1,10 +1,11 @@
 package be.inniger.euler.problems11to20;
 
 import be.inniger.euler.Problem;
+import io.vavr.collection.List;
 
 import java.util.stream.LongStream;
 
-import static java.util.Comparator.comparing;
+import static java.util.Comparator.comparingLong;
 
 /*
  * Longest Collatz sequence
@@ -25,45 +26,20 @@ public class Problem14 implements Problem {
   @Override
   public long solve() {
     return LongStream.rangeClosed(1, MAX_STARTING_NUMBER)
-        .parallel() // No memoization yet means the order of computation is completely independent and the stream may be parallel
-        .mapToObj(CollatzNumber::new)
-        .max(comparing(CollatzNumber::getPathLength))
-        .map(CollatzNumber::getStartingNumber)
+        .boxed()
+        .max(comparingLong(this::calculateSequenceLength))
         .orElseThrow();
   }
 
-  private static class CollatzNumber {
+  private long calculateSequenceLength(long number) {
+    return calculateSequence(number).size();
+  }
 
-    private final long startingNumber;
-    private final long pathLength;
+  private List<Long> calculateSequence(long number) {
+    if (number == 1L) return List.of(1L);
 
-    private CollatzNumber(long startingNumber) {
-      this.startingNumber = startingNumber;
-      this.pathLength = calculatePathLength(startingNumber);
-    }
-
-    private long getPathLength() {
-      return pathLength;
-    }
-
-    private long getStartingNumber() {
-      return startingNumber;
-    }
-
-    private long calculatePathLength(long number) {
-      return calculatePathLengthRec(number, 0L);
-    }
-
-    private long calculatePathLengthRec(long number, long pathLengthAcc) {
-      if (number == 1) {
-        return pathLengthAcc;
-      }
-
-      var nextNumber = number % 2 == 0 ?
-          number / 2 :
-          number * 3 + 1;
-
-      return calculatePathLengthRec(nextNumber, pathLengthAcc + 1);
-    }
+    return number % 2 == 0L ?
+        calculateSequence(number / 2).prepend(number) :
+        calculateSequence(number * 3 + 1).prepend(number);
   }
 }
