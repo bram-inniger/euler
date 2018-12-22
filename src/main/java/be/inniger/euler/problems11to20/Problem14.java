@@ -1,11 +1,9 @@
 package be.inniger.euler.problems11to20;
 
 import be.inniger.euler.Problem;
+import io.vavr.Function1;
 import io.vavr.collection.List;
-
-import java.util.stream.LongStream;
-
-import static java.util.Comparator.comparingLong;
+import io.vavr.collection.Stream;
 
 /*
  * Longest Collatz sequence
@@ -22,24 +20,22 @@ import static java.util.Comparator.comparingLong;
 public class Problem14 implements Problem {
 
   private static final long MAX_STARTING_NUMBER = 1_000_000L;
+  private static final Function1<Long, List<Long>> COLLATZ_SEQ = Function1.of(Problem14::collatzSequence).memoized();
 
-  @Override
-  public long solve() {
-    return LongStream.rangeClosed(1, MAX_STARTING_NUMBER)
-        .boxed()
-        .max(comparingLong(this::calculateSequenceLength))
-        .orElseThrow();
-  }
-
-  private long calculateSequenceLength(long number) {
-    return calculateSequence(number).size();
-  }
-
-  private List<Long> calculateSequence(long number) {
+  private static List<Long> collatzSequence(long number) {
     if (number == 1L) return List.of(1L);
 
     return number % 2 == 0L ?
-        calculateSequence(number / 2).prepend(number) :
-        calculateSequence(number * 3 + 1).prepend(number);
+        COLLATZ_SEQ.apply(number / 2).prepend(number) :
+        COLLATZ_SEQ.apply(number * 3 + 1).prepend(number);
+  }
+
+  @Override
+  public long solve() {
+    return Stream.range(1, MAX_STARTING_NUMBER)
+        .map(COLLATZ_SEQ)
+        .maxBy(List::length)
+        .map(List::head)
+        .getOrElseThrow(IllegalArgumentException::new);
   }
 }
